@@ -1,0 +1,29 @@
+doctype html
+html
+    head
+        title Login - Credstore
+        meta(charset="utf-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1")
+        link(rel="stylesheet", href="//fonts.googleapis.com/css2?family=Josefin+Sans&family=Pacifico&display=swap")
+        link(rel="stylesheet", type="text/css", href="/uikit/css/uikit.min.css")
+        link(rel="stylesheet", type="text/css", href="/css/style.css")
+    body
+        nav(class="uk-navbar-container auth-nav" uk-navbar)
+                div(class="uk-navbar-left")
+                    ul(class="uk-navbar-nav")
+                        li(class="logo")
+                            a(href="/") Credstore
+                div(class="uk-navbar-right")
+                    ul(class="uk-navbar-nav uk-visible@m")
+                        li
+                            a(href="/") Home
+                        li
+                            a(href="/login") Login
+                        li
+                            a(href="/register") Register
+
+        block content
+
+        script(src="/uikit/js/uikit.min.js")
+        script(src="/uikit/js/uikit-icons.min.js")
+        script(src="/js/script.js")
