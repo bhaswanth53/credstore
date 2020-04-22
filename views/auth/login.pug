@@ -1,0 +1,55 @@
+extends ../layouts/auth
+
+block content
+    div(class="uk-grid-match auth-grid" uk-grid)
+        div(class="uk-width-1-2@m")
+            nav(class="uk-navbar-container auth-nav" uk-navbar)
+                div(class="uk-navbar-left")
+                    ul(class="uk-navbar-nav")
+                        li(class="logo")
+                            a(href="/") Credstore
+                div(class="uk-navbar-right")
+                    ul(class="uk-navbar-nav uk-visible@m")
+                        li
+                            a(href="/") Home
+                        li
+                            a(href="/login") Login
+                        li
+                            a(href="/register") Register
+            div(class="uk-padding uk-visible@m")
+                img(src="/images/2.png")
+            div(class="uk-padding uk-hidden@m")
+                form(class="auth-form small")
+                    div(class="uk-margin")
+                        div(class="uk-inline")
+                            span(class="uk-form-icon" uk-icon="user")
+                            input(type="text" class="uk-input" name="email" placeholder="Email Address")
+                    div(class="uk-margin")
+                        div(class="uk-inline")
+                            span(class="uk-form-icon" uk-icon="lock")
+                            input(type="password" class="uk-input" name="password" placeholder="Password")
+                    div(class="uk-margin")
+                        a(href="") Forgot Password?
+                    div(class="uk-margin")
+                        button(type="submit" class="uk-button auth-submit uk-width-1-1") Login
+                div(class="uk-width-1-1 uk-position-bottom card-footer")
+                    p(class="uk-text-center text-white") Already have an account? 
+                        a(href="") click here
+        div(class="uk-width-1-2@m uk-padding-small uk-visible@m")
+            div(class="auth-card uk-inline")
+                form(class="uk-position-center auth-form")
+                    div(class="uk-margin")
+                        div(class="uk-inline")
+                            span(class="uk-form-icon" uk-icon="user")
+                            input(type="text" class="uk-input" name="email" placeholder="Email Address")
+                    div(class="uk-margin")
+                        div(class="uk-inline")
+                            span(class="uk-form-icon" uk-icon="lock")
+                            input(type="password" class="uk-input" name="password" placeholder="Password")
+                    div(class="uk-margin")
+                        a(href="/forgot-password") Forgot Password?
+                    div(class="uk-margin")
+                        button(type="submit" class="uk-button auth-submit uk-width-1-1") Login
+                div(class="uk-width-1-1 uk-position-bottom card-footer")
+                    p(class="uk-text-center text-white") Already have an account? 
+                        a(href="/register") click here

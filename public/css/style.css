@@ -1,0 +1,73 @@
+html {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    background-color: #0A192F;
+    min-height: 100vh;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.josefin {
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.auth-nav {
+    background-color: #0A192F !important;
+    height: fit-content;
+}
+
+.auth-nav .logo a {
+    font-family: 'Pacifico', cursive;
+    text-transform: none;
+    font-size: 25px;
+    color: #3F5EFb;
+}
+
+.auth-nav .logo a:hover {
+    color: #3F5EFb;
+}
+
+.auth-nav .uk-navbar-right li a {
+    color: #3F5EFb;
+    font-family: 'Josefin Sans', sans-serif;
+    text-transform: none;
+    font-size: 18px;
+}
+
+.auth-grid {
+    min-height: 100vh;
+}
+
+.auth-card {
+    background-color: #030D1C;
+    height: 100%;
+}
+
+.auth-form .uk-input {
+    background-color: transparent;
+    border: 2px solid #3F5EFb;
+    border-radius: 15px;
+    color: #3F5EFb;
+}
+
+.auth-form .uk-form-icon svg {
+    margin-left: 10px;
+    color: #3F5EFb;
+}
+
+.auth-form .auth-submit {
+    color: #FFFFFF;
+    background-color: #3F5EFb;
+    border-radius: 15px;
+}
+
+.text-white {
+    color: #FFFFFF;
+}
+
+.auth-form.small .uk-inline {
+    width: 100%;
+}
