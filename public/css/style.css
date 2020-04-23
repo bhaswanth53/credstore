@@ -73,3 +73,59 @@ body {
 .auth-form.small .uk-inline {
     width: 100%;
 }
+
+/* Footer */
+.footer-text {
+    color: #3F5EFb;
+    font-size: 20px;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+
+/* Dashboard styles */
+.dashboard h1.title {
+    color: #3F5EFb;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.dashboard .title-label {
+    color: #FFFFFF;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.dashboard .dcard {
+    width: 140px;
+    height: 140px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.dashboard .dcard .dcard-body {
+    width: inherit;
+    height: inherit;
+}
+
+.dashboard .dcard.credentials {
+    background-image: url('/images/categories/4.jpg')
+}
+
+.dashboard .dcard.websites {
+    background-image: url('/images/categories/5.jpg')
+}
+
+.dashboard .dcard.notes {
+    background-image: url('/images/categories/3.jpg')
+}
+
+.dashboard .dcard .dcard-title {
+    font-size: 40px;
+    font-family: 'Josefin Sans', sans-serif;
+    color: #FFFFFF;
+}
+
+.dashboard .dcard-label {
+    color: #FFFFFF;
+    font-size: 18px;
+    font-family: 'Josefin Sans', sans-serif;
+    cursor: pointer;
+}
