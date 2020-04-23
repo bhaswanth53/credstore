@@ -1,0 +1,6 @@
+.messages
+    each types in Object.keys(messages)
+        each message in messages[types]
+            div(class="uk-alert-"+types uk-alert)
+                a(class="uk-alert-close" uk-close)
+                p #{error.msg}
