@@ -15,6 +15,11 @@ exports.forgot = (req, res) => {
 }
 
 exports.registerUser = (req, res) => {
+    let name = req.body.name
+    let email = req.body.email
+    let password = req.body.password
+    let cpassword = req.body.password
+
     // Validation
     req.checkBody("name", "Name is required").notEmpty()
     req.checkBody("name", "Name must be shorter than 191 characters").isLength({
@@ -40,28 +45,33 @@ exports.registerUser = (req, res) => {
     }
     else {
         let newUser = new User({
-            name: req.body.name,
-            email: req.body.email,
-            password: req.body.password
+            name: name,
+            email: email,
+            password: password
         })
 
         bcrypt.genSalt(10, (err, salt) => {
-            bcrypt.hash(newUser.password, salt, (err, hash) => {
-                if(err) {
-                    console.log(err)
-                } else {
-                    newUser.password = hash
-                    newUser.save((err) => {
-                        if(err) {
-                            console.log(err)
-                            return
-                        } else {
-                            req.flash("success", "You are now registered successfully")
-                            res.redirect("/login")
-                        }
-                    })
-                }
-            })
+            if(err) {
+                console.log(err)
+            }
+            else {
+                bcrypt.hash(newUser.password, salt, (err, hash) => {
+                    if(err) {
+                        console.log(err)
+                    } else {
+                        newUser.password = hash
+                        newUser.save((err) => {
+                            if(err) {
+                                console.log(err)
+                                return
+                            } else {
+                                req.flash("success", "You are now registered successfully")
+                                res.redirect("/login")
+                            }
+                        })
+                    }
+                })
+            }
         })
     }
 }
