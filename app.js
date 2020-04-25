@@ -6,6 +6,7 @@ const bodyParser = require("body-parser")
 const expressValidator = require("express-validator")
 const session = require("express-session")
 const passport = require("passport")
+const flash = require("connect-flash")
 
 const app = express()
 
@@ -41,7 +42,7 @@ app.use(expressValidator())
 
 // Express session middleware
 app.use(session({
-    secret: 'iloveavistha',
+    secret: 'keyboard cat',
     resave: true,
     saveUninitialized: true
 }))

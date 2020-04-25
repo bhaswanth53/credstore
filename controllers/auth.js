@@ -1,4 +1,5 @@
 const bcrypt = require("bcryptjs")
+const securepin = require("secure-pin")
 
 let User = require("../models/users")
 
@@ -15,12 +16,14 @@ exports.forgot = (req, res) => {
 }
 
 exports.registerUser = (req, res) => {
+    // User registration Algorithm
+    // Store received form data
     let name = req.body.name
     let email = req.body.email
     let password = req.body.password
     let cpassword = req.body.password
 
-    // Validation
+    // Validate the form data
     req.checkBody("name", "Name is required").notEmpty()
     req.checkBody("name", "Name must be shorter than 191 characters").isLength({
         max: 191
@@ -37,40 +40,44 @@ exports.registerUser = (req, res) => {
     })
     req.checkBody("cpassword", "Passwords are not matching").equals(req.body.password)
 
+    // Check for validation errors
     let errors = req.validationErrors()
     if(errors) {
+        // Re-render the register page if validation fails
+        console.log(errors)
         res.render("auth/register", {
             errors
         })
     }
     else {
+        // Create a new User instance if the validation was successful
         let newUser = new User({
             name: name,
             email: email,
-            password: password
+            password: password,
+            mpin: ""
         })
 
-        bcrypt.genSalt(10, (err, salt) => {
+        // Generate Salt
+        let salt = bcrypt.genSaltSync(10)
+        // Hash the password
+        let passwordHash = bcrypt.hashSync(newUser.password, salt)
+        // Generate PIN
+        let pin = securepin.generatePinSync(4)
+        // Hash the PIN
+        let pinHash = bcrypt.hashSync(pin, salt)
+
+        // Assign hashed values to newUser
+        newUser.password = passwordHash
+        newUser.mpin = pinHash
+
+        newUser.save((err) => {
             if(err) {
                 console.log(err)
             }
             else {
-                bcrypt.hash(newUser.password, salt, (err, hash) => {
-                    if(err) {
-                        console.log(err)
-                    } else {
-                        newUser.password = hash
-                        newUser.save((err) => {
-                            if(err) {
-                                console.log(err)
-                                return
-                            } else {
-                                req.flash("success", "You are now registered successfully")
-                                res.redirect("/login")
-                            }
-                        })
-                    }
-                })
+                req.flash("success", "You are now registered successfully")
+                res.redirect("/login")
             }
         })
     }

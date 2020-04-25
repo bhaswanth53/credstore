@@ -129,3 +129,36 @@ body {
     font-family: 'Josefin Sans', sans-serif;
     cursor: pointer;
 }
+
+/* Notifications */
+#messages ul {
+    list-style-type: none;
+}
+
+#messages ul li {
+    padding: 10px 10px 10px 20px;
+}
+
+#messages ul.success li {
+    background-color: #1db333;
+    color: #FFFFFF;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+#messages ul.danger li {
+    background-color: #b3361d;
+    color: #FFFFFF;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+#messages ul.warning li {
+    background-color: #e6b207;
+    color: #FFFFFF;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+#messages ul.info li {
+    background-color: #09b6e6;
+    color: #FFFFFF;
+    font-family: 'Josefin Sans', sans-serif;
+}

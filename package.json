@@ -22,6 +22,7 @@
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "pug": "^2.0.4",
+    "secure-pin": "^1.0.14",
     "uikit": "^3.4.2"
   }
 }
