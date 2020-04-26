@@ -1,0 +1,35 @@
+extends ../layouts/auth
+
+block content
+    div(class="uk-grid-match auth-grid" uk-grid)
+        div(class="uk-width-1-2@m")
+            nav(class="uk-navbar-container auth-nav" uk-navbar)
+                div(class="uk-navbar-left")
+                    ul(class="uk-navbar-nav")
+                        li(class="logo")
+                            a(href="/") Credstore
+                div(class="uk-navbar-right")
+                    ul(class="uk-navbar-nav uk-visible@m")
+                        li
+                            a(href="/") Home
+                        li
+                            a(href="/login") Login
+                        li
+                            a(href="/register") Register
+            div(class="uk-padding uk-visible@m")
+                img(src="/images/2.png")
+            div(class="uk-padding uk-hidden@m")
+                div(class="registered uk-text-center")
+                    div(class="uk-padding")
+                        h2 Congratulations..!
+                        p You have been registered successfully
+                        p A verification email along with your unique MPIN has been sent your email address. Please verify your email to activate your account.
+                        p: span Note: Please keep your pin safe.
+        div(class="uk-width-1-2@m uk-padding-small uk-visible@m")
+            div(class="auth-card uk-inline")
+                div(class="uk-position-center registered uk-text-center")
+                    div(class="uk-padding")
+                        h2 Congratulations..!
+                        p You have been registered successfully
+                        p A verification email along with your unique MPIN has been sent your email address. Please verify your email to activate your account.
+                        p: span Note: Please keep your pin safe.

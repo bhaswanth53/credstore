@@ -65,9 +65,8 @@ exports.registerUser = (req, res) => {
                     console.log("Email sent " + info.response)
                 }
             })
-            // Redirect to login page
-            req.flash("success", "You are now registered successfully")
-            res.redirect("/login")
+            // Display registered page
+            res.render("auth/registered")
         }
     })
 }

@@ -1,6 +1,11 @@
 !=messages()
 
-.errors
+//- .errors
     if errors
         each error, i in errors
             div(class="uk-alert-danger" uk-alert) #{error.msg}
+#messages
+    if errors
+        ul.danger
+            each error, i in errors
+                li #{error.msg}
