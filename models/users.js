@@ -30,6 +30,10 @@ let userSchema = mongoose.Schema({
     },
     email_confirm: {
         type: Date
+    },
+    status: {
+        type: Number,
+        default: 0
     }
 })
 
