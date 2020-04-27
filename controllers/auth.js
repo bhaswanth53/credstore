@@ -1,5 +1,6 @@
 const bcrypt = require("bcryptjs")
 const securepin = require("secure-pin")
+const passport = require("passport")
 
 const { transporter } = require("../constants")
 
@@ -69,4 +70,45 @@ exports.registerUser = (req, res) => {
             res.render("auth/registered")
         }
     })
+}
+
+exports.verifyEmail = (req, res) => {
+    // Email verification program
+    User.findOne({email: req.params.email}, (err, user) => {
+        if(err) {
+            console.log(err)
+        } else {
+            if(user.status == 0) {
+                let datetime = new Date()
+                let updated = {}
+                updated.status = 1
+                updated.email_confirm = datetime
+                let query = { _id: user._id }
+                User.update(query, updated, { upsert: true }, (err) => {
+                    if(err) throw err
+                    else {
+                        req.flash("success", "Email verified successfully, please login to continue.")
+                        res.redirect("/login")
+                    }
+                })
+            } else {
+                req.flash("danger", "Please login to continue")
+                res.redirect("/login")
+            }
+        }
+    })
+}
+
+exports.loginUser = (req, res, next) => {
+    passport.authenticate("local", {
+        successRedirect: "/user/dashboard",
+        failureRedirect: "/login",
+        failureFlash: true
+    })(req, res, next)
+}
+
+exports.userLogout = (req, res) => {
+    req.logout()
+    req.flash("success", "You have been logged out")
+    res.redirect("/login")
 }

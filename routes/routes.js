@@ -8,18 +8,24 @@ const UserController = require("../controllers/user")
 // Validators
 const AuthValidator = require("../validation/auth")
 
+//Middlewares
+const { ensureAuth, ensureGuest } = require("../constants")
+
 const router = express.Router()
 
 router.get("/", SiteController.homepage)
 
 // Auth Routes
-router.get("/login", AuthController.login)
-router.get("/register", AuthController.register)
-router.get("/forgot-password", AuthController.forgot)
+router.get("/login", ensureGuest, AuthController.login)
+router.get("/register", ensureGuest, AuthController.register)
+router.get("/forgot-password", ensureGuest, AuthController.forgot)
+router.get("/user/verify-email/:email", AuthController.verifyEmail)
+router.get("/logout", ensureAuth, AuthController.userLogout)
 
 router.post("/register", AuthValidator.registerValidator, AuthController.registerUser)
+router.post("/login", AuthController.loginUser)
 
 // User Routes
-router.get("/user/dashboard", UserController.dashboard)
+router.get("/user/dashboard", ensureAuth, UserController.dashboard)
 
 module.exports = router

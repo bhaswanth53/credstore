@@ -152,6 +152,12 @@ body {
     font-family: 'Josefin Sans', sans-serif;
 }
 
+#messages ul.error li {
+    background-color: #b3361d;
+    color: #FFFFFF;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
 #messages ul.warning li {
     background-color: #e6b207;
     color: #FFFFFF;

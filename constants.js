@@ -9,3 +9,22 @@ exports.transporter = nodemailer.createTransport({
         pass: process.env.MAIL_PASSWORD
     }
 })
+
+// Ensure Auth Middleware
+exports.ensureAuth = (req, res, next) => {
+    if(req.isAuthenticated()) {
+        return next()
+    } else {
+        req.flash("danger", "Please Login")
+        res.redirect("/login")
+    }
+}
+
+// Ensure Guest Middleware
+exports.ensureGuest = (req, res, next) => {
+    if(!req.isAuthenticated()) {
+        return next()
+    } else {
+        res.redirect("/user/dashboard")
+    }
+}
