@@ -6,11 +6,6 @@ let categorySchema = mongoose.Schema({
         required: true,
         maxlength: 191
     },
-    icon: {
-        type: String,
-        default: "tag",
-        maxlength: 50
-    },
     user: {
         type: String,
         required: true

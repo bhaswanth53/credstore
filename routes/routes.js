@@ -4,6 +4,7 @@ const express = require("express")
 const SiteController = require("../controllers/site")
 const AuthController = require("../controllers/auth")
 const UserController = require("../controllers/user")
+const CategoryController = require("../controllers/category")
 
 // Validators
 const AuthValidator = require("../validation/auth")
@@ -24,6 +25,9 @@ router.get("/logout", ensureAuth, AuthController.userLogout)
 
 router.post("/register", AuthValidator.registerValidator, AuthController.registerUser)
 router.post("/login", AuthController.loginUser)
+
+// Category Routes
+router.get("/user/categories", ensureAuth, CategoryController.viewCategories)
 
 // User Routes
 router.get("/user/dashboard", ensureAuth, UserController.dashboard)

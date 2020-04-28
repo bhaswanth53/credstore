@@ -1,0 +1,113 @@
+extends ../layouts/dashboard
+
+block content
+    div(class="uk-container dashboard")
+        div(class="uk-padding uk-text-center")
+            h1(class="title") Categories
+            div(class="uk-grid-match" uk-grid)
+                div(class="uk-width-1-2@s uk-width-1-3@m")
+                    a(href="" class="catlink")
+                        table(class="catcard")
+                            tr
+                                td(class="caticon")
+                                    span(uk-icon="cog")
+                                td(class="catname")
+                                    span Books
+                div(class="uk-width-1-2@s uk-width-1-3@m")
+                    a(href="" class="catlink")
+                        table(class="catcard")
+                            tr
+                                td(class="caticon")
+                                    span(uk-icon="cog")
+                                td(class="catname")
+                                    span Business
+                div(class="uk-width-1-2@s uk-width-1-3@m")
+                    a(href="" class="catlink")
+                        table(class="catcard")
+                            tr
+                                td(class="caticon")
+                                    span(uk-icon="cog")
+                                td(class="catname")
+                                    span Catalogs
+                div(class="uk-width-1-2@s uk-width-1-3@m")
+                    a(href="" class="catlink")
+                        table(class="catcard")
+                            tr
+                                td(class="caticon")
+                                    span(uk-icon="cog")
+                                td(class="catname")
+                                    span Education
+                div(class="uk-width-1-2@s uk-width-1-3@m")
+                    a(href="" class="catlink")
+                        table(class="catcard")
+                            tr
+                                td(class="caticon")
+                                    span(uk-icon="cog")
+                                td(class="catname")
+                                    span Entertainment
+                div(class="uk-width-1-2@s uk-width-1-3@m")
+                    a(href="" class="catlink")
+                        table(class="catcard")
+                            tr
+                                td(class="caticon")
+                                    span(uk-icon="cog")
+                                td(class="catname")
+                                    span Finance
+                div(class="uk-width-1-2@s uk-width-1-3@m")
+                    a(href="" class="catlink")
+                        table(class="catcard")
+                            tr
+                                td(class="caticon")
+                                    span(uk-icon="cog")
+                                td(class="catname")
+                                    span Food & Drink
+                div(class="uk-width-1-2@s uk-width-1-3@m")
+                    a(href="" class="catlink")
+                        table(class="catcard")
+                            tr
+                                td(class="caticon")
+                                    span(uk-icon="cog")
+                                td(class="catname")
+                                    span Games
+                div(class="uk-width-1-2@s uk-width-1-3@m")
+                    a(href="" class="catlink")
+                        table(class="catcard")
+                            tr
+                                td(class="caticon")
+                                    span(uk-icon="cog")
+                                td(class="catname")
+                                    span Security
+
+    /// div(class="cat-radio")
+        input(type='radio' classs="radio-icon" name='radios' value='all one' id="radio1")
+        label(for='radio1' uk-icon="nut")
+    // div(class="cat-radio")
+        input(type='radio' classs="radio-icon" name='radios' value='all two' id="radio2")
+        label(for='radio2' uk-icon="nut")
+    // div(class="cat-radio")
+        input(type='radio' classs="radio-icon" name='radios' value='all three' id="radio3")
+        label(for='radio3' uk-icon="nut")
+
+    div(id="cat-modal" uk-modal)
+        div(class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical")
+            button(class="uk-modal-close-default" type="button" uk-close)
+            h2(class="uk-modal-title") Add Category
+            form(class="cat-form" method="POST" action="/user/categories/add")
+                div(class="uk-margin")
+                    label(class="uk-form-label" for="name") Category Name
+                    input(type="text" class="uk-input cat-input" name="name")
+                div(class="uk-margin")
+                    label(class="uk-form-label") Select icon
+                    div(class="icon-div uk-padding")
+                        div(class="uk-grid-match" uk-grid)
+                            each icon, i in icons
+                                div(class="uk-width-1-2 uk-width-1-4@s uk-width-1-5@m")
+                                    div(class="cat-radio")
+                                        input(type='radio' classs="radio-icon" name='caticon' value=icon id="icon"+i)
+                                        label(for="icon"+i uk-icon=icon uk-tooltip=icon)
+                div(class="uk-margin")
+                    button(class="uk-button uk-width-1-1 cat-submit") Add Category
+            
+
+    button(class="catadd" uk-tooltip="Add Category" uk-toggle="target: #cat-modal")
+        span(uk-icon="plus")

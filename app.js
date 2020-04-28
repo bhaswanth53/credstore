@@ -73,6 +73,7 @@ app.use("/", Routes)
 // Serving assets
 app.use(express.static(path.join(__dirname, 'public')))
 app.use('/uikit', express.static(path.join(__dirname + '/node_modules/uikit/dist/')));
+app.use('/jquery', express.static(path.join(__dirname + '/node_modules/jquery/dist/')));
 
 const port = process.env.PORT || 8080
 

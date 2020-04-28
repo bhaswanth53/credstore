@@ -105,6 +105,10 @@ body {
     height: inherit;
 }
 
+.dashboard .dcard.categories {
+    background-image: url('/images/categories/9.jpg')
+}
+
 .dashboard .dcard.credentials {
     background-image: url('/images/categories/4.jpg')
 }
@@ -287,3 +291,132 @@ body {
     color: #FFFFFF;
 }
 /* End of dashboard sidebar */
+
+/* Category Page */
+
+.catlink:hover {
+    text-decoration: none;
+}
+
+.catcard {
+    background-color: #030D1C;
+    color: #3F5EFb;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 18px;
+    text-align: left !important;
+    text-transform: none;
+    border: 0;
+    cursor: pointer;
+    width: 100%;
+}
+
+.caticon {
+    padding: 10px;
+    color: #FFFFFF;
+    background-color: #3F5EFb;
+    text-align: center;
+    width: 30px;
+}
+
+.catname span {
+    margin-left: 8px;
+    color: #3F5EFb;
+}
+
+.catadd {
+    color: #FFFFFF;
+    background-color: #3F5EFb;
+    width: 45px;
+    height: 45px;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    -webkit-box-shadow: 5px 5px 15px -7px #000000; 
+    box-shadow: 5px 5px 15px -7px #000000;
+}
+
+.cat-radio {
+    text-align: center;
+}
+
+.cat-radio input[type=radio] {
+    display:none; 
+    margin:10px;
+}
+
+/*
+    Change the look'n'feel of labels (which are adjacent to radiobuttons).
+    Add some margin, padding to label
+*/
+.cat-radio input[type=radio] + label {
+    display:inline-block;
+    margin:-2px;
+    padding: 20px;
+    color: #3F5EFb;
+    cursor: pointer;
+    background-color: #0A192F;
+}
+/*
+    Change background color for label next to checked radio button
+    to make it look like highlighted button
+*/
+.cat-radio input[type=radio]:checked + label { 
+    background-image: none;
+    background-color:#3F5EFb;
+    color: #FFFFFF;
+}
+
+#cat-modal .uk-modal-dialog {
+    background-color: #030D1C;
+}
+
+#cat-modal .uk-modal-title {
+    color: #3F5EFb;
+}
+
+#cat-modal .cat-form .uk-form-label {
+    color: #3F5EFb;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 15px;
+}
+
+#cat-modal .cat-form input.cat-input {
+    background-color: transparent !important;
+    border-color: #3F5EFb;
+    font-family: 'Josefin Sans', sans-serif;
+    color: #3F5EFb;
+}
+
+#cat-modal .icon-div {
+    border: 1px solid #3F5EFb;
+    height: 350px;
+    overflow-y: auto;
+}
+
+.cat-submit {
+    background-color: #3F5EFb;
+    color: #FFFFFF;
+}
+
+/* Icon div scroll controller */
+/* width */
+.icon-div::-webkit-scrollbar {
+    width: 10px;
+	height: 0px;
+    background-color: #030D1C;
+}
+
+/* Track */
+.icon-div::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+/* Handle */
+.icon-div::-webkit-scrollbar-thumb {
+    background: #3f5efb;
+}
+
+/* End of category page */
