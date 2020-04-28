@@ -8,7 +8,9 @@ html
         link(rel="stylesheet", type="text/css", href="/uikit/css/uikit.min.css")
         link(rel="stylesheet", type="text/css", href="/css/style.css")
     body
-        nav(class="uk-navbar-container auth-nav" uk-navbar)
+        include ../overlay
+
+        nav(class="uk-navbar-container auth-nav" uk-navbar="mode: click")
                 div(class="uk-navbar-left")
                     ul(class="uk-navbar-nav")
                         li(class="logo")
@@ -18,9 +20,23 @@ html
                         li
                             a(href="/user/dashboard") Dashboard
                         li
-                            a(href="/user/settings") Settings
+                            a(href="#") Settings
+                            div(class="uk-navbar-dropdown")
+                                ul(class="uk-nav uk-navbar-dropdown-nav")
+                                    li
+                                        a(href="/") Profile Settings
+                                    li
+                                        a(href="/") Security Settings
                         li
                             a(href="/logout") Logout
+                    ul(class="uk-navbar-nav uk-hidden@m")
+                        li 
+                            a(href="#sidebar" uk-toggle uk-icon="menu")
+        div(id="sidebar" uk-offcanvas="mode: push; overlay: true")
+            div(class="uk-offcanvas-bar")
+                button(class="uk-offcanvas-close" type="button" uk-close)
+                h3 title
+                p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
         block content
 

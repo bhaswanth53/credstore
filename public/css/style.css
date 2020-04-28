@@ -270,3 +270,20 @@ body {
 }
 
 /* End of Loader */
+
+
+/* Dashboard sidebar */
+.auth-nav .uk-navbar-dropdown {
+    background-color: #030D1C;
+    top: 50px !important;
+    padding: 0px;
+}
+.auth-nav .uk-navbar-dropdown a {
+    padding: 10px 10px 10px 20px;
+    transition: 0.3s;
+}
+.auth-nav .uk-navbar-dropdown a:hover {
+    background-color: #3F5EFb;
+    color: #FFFFFF;
+}
+/* End of dashboard sidebar */
