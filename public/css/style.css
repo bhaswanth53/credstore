@@ -332,8 +332,8 @@ body {
     border-radius: 50%;
     cursor: pointer;
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 25px;
+    right: 25px;
     -webkit-box-shadow: 5px 5px 15px -7px #000000; 
     box-shadow: 5px 5px 15px -7px #000000;
 }

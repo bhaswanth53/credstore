@@ -10,6 +10,10 @@ let categorySchema = mongoose.Schema({
         type: String,
         required: true
     },
+    icon: {
+        type: String,
+        default: "tag"
+    },
     created_at: {
         type: Date,
         default: Date.now

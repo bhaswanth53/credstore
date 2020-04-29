@@ -8,6 +8,7 @@ const CategoryController = require("../controllers/category")
 
 // Validators
 const AuthValidator = require("../validation/auth")
+const CategoryValidator = require("../validation/category")
 
 //Middlewares
 const { ensureAuth, ensureGuest } = require("../constants")
@@ -28,6 +29,8 @@ router.post("/login", AuthController.loginUser)
 
 // Category Routes
 router.get("/user/categories", ensureAuth, CategoryController.viewCategories)
+
+router.post("/user/categories/add", [ensureAuth, CategoryValidator.addCategory], CategoryController.addCategory)
 
 // User Routes
 router.get("/user/dashboard", ensureAuth, UserController.dashboard)

@@ -4,89 +4,17 @@ block content
     div(class="uk-container dashboard")
         div(class="uk-padding uk-text-center")
             h1(class="title") Categories
+            include ../messages
             div(class="uk-grid-match" uk-grid)
-                div(class="uk-width-1-2@s uk-width-1-3@m")
-                    a(href="" class="catlink")
-                        table(class="catcard")
-                            tr
-                                td(class="caticon")
-                                    span(uk-icon="cog")
-                                td(class="catname")
-                                    span Books
-                div(class="uk-width-1-2@s uk-width-1-3@m")
-                    a(href="" class="catlink")
-                        table(class="catcard")
-                            tr
-                                td(class="caticon")
-                                    span(uk-icon="cog")
-                                td(class="catname")
-                                    span Business
-                div(class="uk-width-1-2@s uk-width-1-3@m")
-                    a(href="" class="catlink")
-                        table(class="catcard")
-                            tr
-                                td(class="caticon")
-                                    span(uk-icon="cog")
-                                td(class="catname")
-                                    span Catalogs
-                div(class="uk-width-1-2@s uk-width-1-3@m")
-                    a(href="" class="catlink")
-                        table(class="catcard")
-                            tr
-                                td(class="caticon")
-                                    span(uk-icon="cog")
-                                td(class="catname")
-                                    span Education
-                div(class="uk-width-1-2@s uk-width-1-3@m")
-                    a(href="" class="catlink")
-                        table(class="catcard")
-                            tr
-                                td(class="caticon")
-                                    span(uk-icon="cog")
-                                td(class="catname")
-                                    span Entertainment
-                div(class="uk-width-1-2@s uk-width-1-3@m")
-                    a(href="" class="catlink")
-                        table(class="catcard")
-                            tr
-                                td(class="caticon")
-                                    span(uk-icon="cog")
-                                td(class="catname")
-                                    span Finance
-                div(class="uk-width-1-2@s uk-width-1-3@m")
-                    a(href="" class="catlink")
-                        table(class="catcard")
-                            tr
-                                td(class="caticon")
-                                    span(uk-icon="cog")
-                                td(class="catname")
-                                    span Food & Drink
-                div(class="uk-width-1-2@s uk-width-1-3@m")
-                    a(href="" class="catlink")
-                        table(class="catcard")
-                            tr
-                                td(class="caticon")
-                                    span(uk-icon="cog")
-                                td(class="catname")
-                                    span Games
-                div(class="uk-width-1-2@s uk-width-1-3@m")
-                    a(href="" class="catlink")
-                        table(class="catcard")
-                            tr
-                                td(class="caticon")
-                                    span(uk-icon="cog")
-                                td(class="catname")
-                                    span Security
-
-    /// div(class="cat-radio")
-        input(type='radio' classs="radio-icon" name='radios' value='all one' id="radio1")
-        label(for='radio1' uk-icon="nut")
-    // div(class="cat-radio")
-        input(type='radio' classs="radio-icon" name='radios' value='all two' id="radio2")
-        label(for='radio2' uk-icon="nut")
-    // div(class="cat-radio")
-        input(type='radio' classs="radio-icon" name='radios' value='all three' id="radio3")
-        label(for='radio3' uk-icon="nut")
+                each category, i in categories
+                    div(class="uk-width-1-2@s uk-width-1-3@m")
+                        a(href="" class="catlink")
+                            table(class="catcard")
+                                tr
+                                    td(class="caticon")
+                                        span(uk-icon=category.icon)
+                                    td(class="catname")
+                                        span #{category.name}
 
     div(id="cat-modal" uk-modal)
         div(class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical")
