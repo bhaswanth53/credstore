@@ -420,3 +420,143 @@ body {
 }
 
 /* End of category page */
+
+
+/* Datatable */
+
+    .dataTables_wrapper label {
+        color: #3F5EFb;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 15px;
+    }
+
+    .dataTables_wrapper select {
+        background-color: transparent;
+        color: #3F5EFb;
+        font-family: 'Josefin Sans', sans-serif;
+        border-color: #3F5EFb;
+    }
+
+    .dataTables_wrapper input[type='search'] {
+        background-color: transparent;
+        color: #3F5EFb;
+        font-family: 'Josefin Sans', sans-serif;
+        border: 1px solid #3F5EFb;
+    }
+
+    .datatable th {
+        color: #3F5EFb;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 18px;
+    }
+
+    table.dataTable tbody tr {
+        background-color: transparent !important;
+    }
+
+    .datatable tr td {
+        color: #3F5EFb;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 15px;
+    }
+
+    .datatable {
+        border-collapse: collapse;
+        border: 0 !important;
+        padding-top: 20px;
+    }
+
+    .datatable, .datatable td, .datatable th {
+        border: 1px solid #3F5EFb;
+    }
+
+    .dataTables_info {
+        color: #3F5EFb !important;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 15px;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button.next {
+        color: #3F5EFb !important;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 15px;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button.next:hover {
+        background-color: #0A192F !important;
+        border: 1px solid #3f5efb;
+        background: none !important;
+        color: #3F5EFb !important;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button.next.disabled {
+        color: #AAAAAA !important;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 15px;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button.previous {
+        color: #3F5EFb !important;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 15px;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button.previous:hover {
+        background-color: #0A192F !important;
+        border: 1px solid #3f5efb;
+        background: none !important;
+        color: #3F5EFb !important;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button.previous.disabled {
+        color: #AAAAAA !important;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 15px;
+    }
+
+    .dataTables_wrapper .dataTables_paginate a.paginate_button {
+        padding: 0px 5px 0px 5px !important;
+        color: #AAAAAA !important;
+        font-size: 15px;
+    }
+
+    .dataTables_wrapper .dataTables_paginate a.paginate_button:hover {
+        background: none;
+        text-decoration: underline !important;
+        color: #AAAAAA !important;
+        border: 0 !important;
+    }
+
+    .dataTables_wrapper .dataTables_paginate a.paginate_button.current {
+        padding: 0px 5px 0px 5px !important;
+        color: #3F5EFb !important;
+        font-size: 15px;
+        background-color: transparent !important;
+        background: none;
+        border: 0;
+        font-weight: bold;
+    }
+
+    .dataTables_wrapper .dataTables_paginate a.paginate_button.current:hover {
+        background: none;
+        text-decoration: underline !important;
+        color: #3F5EFb !important;
+        border: 0 !important;
+    }
+
+/* End of Datatable */
+
+/* Credentials Page */
+
+    a.uk-icon-button.view {
+        background-color: #3F5EFb;
+        color: #FFFFFF;
+        margin-right: 6px;
+    }
+
+    a.uk-icon-button.delete {
+        background-color: #a3170d;
+        color: #FFFFFF;
+    }
+
+/* End of credentials page */

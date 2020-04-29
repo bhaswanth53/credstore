@@ -13,3 +13,5 @@ $(document).on('click', '.cat-radio label', function() {
         alert(input.val())
     } */
 })
+
+$('.datatable').dataTable();
