@@ -32,7 +32,8 @@ router.get("/user/categories", ensureAuth, CategoryController.viewCategories)
 router.post("/user/categories/add", [ensureAuth, CategoryValidator.addCategory], CategoryController.addCategory)
 
 // Credential Routes
-router.get("/user/credentials", CredentialController.listCredentials)
+router.get("/user/credentials", CredentialController.listSites)
+router.get("/user/credentials/:id", CredentialController.listCredentials)
 
 // User Routes
 router.get("/user/dashboard", ensureAuth, UserController.dashboard)

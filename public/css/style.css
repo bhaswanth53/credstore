@@ -559,4 +559,165 @@ body {
         color: #FFFFFF;
     }
 
+    .site-card {
+        background-color: #030D1C;
+    }
+
+    .site-card .site-link {
+        max-width: 100%;
+        word-wrap: break-word;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 20px;
+        color: #3F5EFb;
+    }
+
+    .site-card .sc-name {
+        text-align: left;
+        color: #3F5EFb;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 20px;
+    }
+
+    .site-card .sc-name span {
+        margin-right: 10px;
+    }
+
+    .site-card-body {
+        padding-top: 15px;
+    }
+
+    .site-card-body p {
+        color: #c7ced9;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 18px;
+    }
+
+    .site-card .uk-accordion-title {
+        color: #3F5EFb;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 30px;
+    }
+
+    .site-card .uk-accordion-title::before {
+        filter: invert(100%);
+        -webkit-filter: invert(100%);
+        border: 1px solid #777;
+    }
+
+    .site-cred {
+        margin-top: 20px;
+    }
+
+    .site-cred .cred-card {
+        background-color: #030D1C;
+        padding: 5px;
+        border-radius: 10px;
+        -webkit-box-shadow: 5px 6px 15px -6px #000000; 
+        box-shadow: 5px 6px 15px -6px #000000;
+    }
+
+    .site-cred .cred-card .cred-card-head table td.icon {
+        background-color: #3F5EFb;
+        color: #c7ced9;
+        padding: 15px;
+        border-radius: 7px;
+        -webkit-box-shadow: 5px 6px 15px -11px #000000; 
+        box-shadow: 5px 6px 15px -11px #000000;
+    }
+
+    .site-cred .cred-card .cred-card-head table td.text {
+        color: #3F5EFb;
+        font-size: 25px;
+        font-family: 'Josefin Sans', sans-serif;
+        padding-left: 10px;
+    }
+
+    .site-cred .cred-card .cred-card-body {
+        margin-top: 10px;
+    }
+
+    .site-cred .cred-card .cred-card-body table {
+        text-align: left;
+        word-break: break-all;
+    }
+
+    .site-cred .cred-card .cred-card-body table th {
+        color: #3F5EFb;
+        font-family: 'Josefin Sans', sans-serif;
+    }
+
+    .site-cred .cred-card .cred-card-body table td {
+        color: #c7ced9;
+        font-family: 'Josefin Sans', sans-serif;
+        padding-left: 10px;
+    }
+
+    .site-cred .cred-card .cred-card-footer {
+        margin-top: 10px;
+    }
+
+    .site-cred .cred-card .cred-card-footer button {
+        background-color: #3F5EFb;
+        color: #FFFFFF;
+        border-bottom-right-radius: 10px 10px;
+        border-bottom-left-radius: 10px 10px;
+        -webkit-box-shadow: 5px 6px 15px -11px #000000; 
+        box-shadow: 5px 6px 15px -11px #000000;
+    }
+
+    .cred-modal .uk-modal-dialog {
+        background-color: #030D1C;
+    }
+
+    .cred-modal .uk-modal-dialog .uk-modal-header {
+        background-color: #030D1C;
+        border-bottom: 0;
+    }
+
+    .cred-modal .uk-modal-dialog .uk-modal-header h2 {
+        font-family: 'Josefin Sans', sans-serif;
+        color: #3F5EFb;
+    }
+
+    .cred-modal .uk-modal-dialog .uk-modal-body .uk-form-label {
+        color: #3F5EFb;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 15px;
+    }
+
+    .cred-modal .uk-modal-dialog .uk-modal-body .uk-input {
+        color: #3F5EFb;
+        font-family: 'Josefin Sans', sans-serif;
+        background-color: transparent;
+        border-color: #3F5EFb;
+    }
+
+    .cred-modal .uk-modal-dialog .uk-modal-body .uk-textarea {
+        color: #3F5EFb;
+        font-family: 'Josefin Sans', sans-serif;
+        background-color: transparent;
+        border-color: #3F5EFb;
+        resize: none;
+    }
+
+    .cred-modal .uk-modal-dialog .uk-modal-footer {
+        background-color: #030D1C;
+        border-top: 0;
+    }
+
+    .cred-modal .uk-modal-dialog .uk-modal-footer .add-button {
+        background-color: #3F5EFb;
+        color: #FFFFFF;
+        font-family: 'Josefin Sans', sans-serif;
+        text-transform: none;
+    }
+
+    .cred-modal .uk-modal-dialog .uk-modal-footer .close-button {
+        background-color: #a3170d;
+        color: #FFFFFF;
+        font-family: 'Josefin Sans', sans-serif;
+        text-transform: none;
+        margin-right: 5px;
+    }
+
 /* End of credentials page */
