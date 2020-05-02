@@ -720,4 +720,25 @@ body {
         margin-right: 5px;
     }
 
+    .view-cred-table {
+        border-collapse: collapse;
+    }
+    
+    .view-cred-table, .view-cred-table th, .view-cred-table td {
+        border: 1px solid #3F5EFb;
+        padding: 5px;
+    }
+
+    .view-cred-table th {
+        color: #3F5EFb;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 15px;
+    }
+
+    .view-cred-table td {
+        color: #c7ced9;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 15px;
+    }
+
 /* End of credentials page */

@@ -41,7 +41,7 @@ block content
                                                 th Email
                                                 td bhaswanthkumar6@gmail.com
                                 div(class="cred-card-footer")
-                                    button(class="uk-button uk-width-1-1") View Credential
+                                    button(class="uk-button uk-width-1-1" uk-toggle="target: #view-cred-modal") View Credential
                                 - i++
     button(class="catadd" uk-tooltip="Add Credential" uk-toggle="target: #add-cred-modal")
         span(uk-icon="plus")
@@ -75,3 +75,29 @@ block content
                 div(class="uk-modal-footer uk-text-right@m")
                     button(class="uk-button close-button uk-modal-close" type="button") Cancel
                     button(class="uk-button add-button" type="submit") Submit
+
+        // View Credential Modal
+        div(class="cred-modal" id="view-cred-modal" uk-modal)
+            div(class="uk-modal-dialog")
+                button(class="uk-modal-close-default" type="button" uk-close)
+                div(class="uk-modal-header")
+                    h2(class="uk-modal-title") Credential Info
+                div(class="uk-modal-body")
+                    table(class="view-cred-table uk-text-left")
+                        tbody
+                            tr 
+                                th Username
+                                td bhaswanth65
+                            tr
+                                th Email
+                                td bhaswanthkumar6@gmail.com
+                            tr
+                                th Mobile
+                                td +919985814059
+                            tr
+                                th Password
+                                td Basu@533274
+                            tr
+                                th(colspan="2") Additional Info
+                            tr
+                                td(colspan="2") Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sed felis consequat, tempor velit at, varius libero. Nullam urna urna, laoreet ut posuere quis, sodales vel eros. Vivamus libero augue, pulvinar non est eu, condimentum tristique odio. Maecenas sit amet egestas nunc.
