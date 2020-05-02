@@ -692,6 +692,13 @@ body {
         border-color: #3F5EFb;
     }
 
+    .cred-modal .uk-modal-dialog .uk-modal-body .uk-select {
+        color: #3F5EFb;
+        font-family: 'Josefin Sans', sans-serif;
+        background-color: transparent;
+        border-color: #3F5EFb;
+    }
+
     .cred-modal .uk-modal-dialog .uk-modal-body .uk-textarea {
         color: #3F5EFb;
         font-family: 'Josefin Sans', sans-serif;

@@ -10,6 +10,7 @@ const CredentialController = require("../controllers/credentials")
 // Validators
 const AuthValidator = require("../validation/auth")
 const CategoryValidator = require("../validation/category")
+const SiteValidator = require("../validation/site")
 
 //Middlewares
 const { ensureAuth, ensureGuest } = require("../constants")
@@ -32,10 +33,11 @@ router.get("/user/categories", ensureAuth, CategoryController.viewCategories)
 router.post("/user/categories/add", [ensureAuth, CategoryValidator.addCategory], CategoryController.addCategory)
 
 // Credential Routes
-router.get("/user/credentials", CredentialController.listSites)
-router.get("/user/credentials/:id", CredentialController.listCredentials)
+router.get("/user/credentials", ensureAuth, CredentialController.listSites)
+router.get("/user/credentials/:id", ensureAuth, CredentialController.listCredentials)
+router.post("/user/credentials/add", SiteValidator.addSite, CredentialController.addSite)
 
 // User Routes
-router.get("/user/dashboard", ensureAuth, UserController.dashboard)
+router.get("/user/dashboard",UserController.dashboard)
 
 module.exports = router
