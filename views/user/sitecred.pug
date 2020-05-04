@@ -7,22 +7,21 @@ block content
             div(class="site-card uk-padding")
                 ul(class="uk-margin-remove" uk-accordion)
                     li(class="uk-open")
-                        a(href="#" class="uk-accordion-title") Site Name
+                        a(href="#" class="uk-accordion-title") #{site.name}
                         div(class="uk-accordion-content")
                             div(class="site-card-header" uk-grid)
                                 div(class="uk-width-1-2@m")
                                     p(class="sc-name")
                                         span(uk-icon="tag")
-                                        | Category Name
+                                        | #{category.name}
                                 div(class="uk-width-1-2@m uk-text-right@m")
-                                    a(href="https://www.lipsum.com/feed/html" class="site-link" target="_blank") https://www.lipsum.com/feed/html
+                                    a(href=site.url class="site-link" target="_blank") #{site.url}
                             div(class="site-card-body")
-                                p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus in diam nunc. Maecenas aliquet arcu lacus, in porta dui facilisis efficitur. Aenean molestie congue felis, ac lobortis dolor hendrerit non. Praesent sed consectetur libero, ullamcorper euismod urna. Vivamus sagittis ultrices nunc, eget dapibus est pretium porttitor. Vestibulum vel volutpat nunc. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla ut posuere sapien, et tempus tellus.
+                                p= site.description
 
             div(class="site-cred")
                 div(class="uk-grid-match" uk-grid)
-                    - var i = 0
-                    while i < 12
+                    each cred, i in credentials
                         div(class="uk-width-1-2@s uk-width-1-3@m")
                             div(class="cred-card")
                                 div(class="cred-card-head")
@@ -30,19 +29,18 @@ block content
                                         tr
                                             td(class="icon")
                                                 span(uk-icon="lock")
-                                            td(class="text") Site Name
+                                            td(class="text") #{site.name}
                                 div(class="cred-card-body")
                                     table(classs="uk-table uk-table-responsive")
                                         tbody
                                             tr
                                                 th Username
-                                                td bhaswanth
+                                                td #{cred.username}
                                             tr 
                                                 th Email
-                                                td bhaswanthkumar6@gmail.com
+                                                td #{cred.email}
                                 div(class="cred-card-footer")
                                     button(class="uk-button uk-width-1-1" uk-toggle="target: #view-cred-modal") View Credential
-                                - i++
     button(class="catadd" uk-tooltip="Add Credential" uk-toggle="target: #add-cred-modal")
         span(uk-icon="plus")
 
@@ -52,7 +50,7 @@ block content
             button(class="uk-modal-close-default" type="button" uk-close)
             div(class="uk-modal-header")
                 h2(class="uk-modal-title") Add Credential
-            form(class="add-cred-form" method="POST" action="")
+            form(class="add-cred-form" method="POST" action="/user/credentials/"+site._id+"/add")
                 div(class="uk-modal-body")
                     div(class="uk-margin")
                         label(class="uk-form-label" for="username") Username
