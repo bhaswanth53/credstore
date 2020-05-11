@@ -749,3 +749,35 @@ body {
     }
 
 /* End of credentials page */
+
+
+/* Website Page */
+
+    .wbinfo-table {
+        border-collapse: collapse;
+        text-align: left;
+        width: 100%;
+    }
+
+    .wbinfo-table, .wbinfo-table th, .wbinfo-table td {
+        border: 1px solid #3F5EFb;
+        padding: 10px;
+    }
+
+    .wbinfo-table th {
+        color: #3F5EFb;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 15px;
+    }
+
+    .wbinfo-table td {
+        color: #c7ced9;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 15px;
+    }
+
+    .wbinfo-table .web-url {
+        color: #c7ced9;
+    }
+
+/* End of Website Page */

@@ -1,0 +1,24 @@
+extends ../layouts/dashboard
+
+block content
+    div(class="uk-container dashboard")
+        div(class="uk-padding uk-text-center")
+            h1(class="title") #{website.name}
+            include ../messages
+            div(class="uk-overflow-auto")
+                table(class="wbinfo-table")
+                    tbody
+                        tr
+                            th Name
+                            td #{website.name}
+                        tr
+                            th Category
+                            td #{category.name}
+                        tr
+                            th URL
+                            td 
+                                a(href=website.url target="_blank" class="web-url") #{website.url}
+                        tr
+                            th(colspan="2") Description
+                        tr
+                            td(colspan="2") #{website.description}
