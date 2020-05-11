@@ -39,8 +39,15 @@ block content
                                             tr 
                                                 th Email
                                                 td #{cred.email}
-                                div(class="cred-card-footer")
-                                    button(class="uk-button uk-width-1-1" uk-toggle="target: #view-cred-modal") View Credential
+                                div(class="cred-card-footer uk-text-right")
+                                    // button(class="uk-button uk-width-1-1" uk-toggle="target: #view-cred-modal") View Credential
+                                    div(class="uk-button-group")
+                                        button(class="info-button" uk-toggle="target: #view-cred-modal")
+                                            span(uk-icon="info")
+                                        button(class="edit-button")
+                                            span(uk-icon="pencil")
+                                        button(class="delete-button")
+                                            span(uk-icon="trash")
     button(class="catadd" uk-tooltip="Add Credential" uk-toggle="target: #add-cred-modal")
         span(uk-icon="plus")
 

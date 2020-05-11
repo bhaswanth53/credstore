@@ -654,15 +654,46 @@ body {
 
     .site-cred .cred-card .cred-card-footer {
         margin-top: 10px;
+        padding: 5px;
     }
 
-    .site-cred .cred-card .cred-card-footer button {
+    /* .site-cred .cred-card .cred-card-footer button {
         background-color: #3F5EFb;
         color: #FFFFFF;
         border-bottom-right-radius: 10px 10px;
         border-bottom-left-radius: 10px 10px;
         -webkit-box-shadow: 5px 6px 15px -11px #000000; 
         box-shadow: 5px 6px 15px -11px #000000;
+    } */
+
+    .site-cred .cred-card .cred-card-footer .info-button {
+        background-color: #3F5EFb;
+        color: #FFFFFF;
+        padding: 5px;
+        border: 0;
+        margin: 2px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .site-cred .cred-card .cred-card-footer .edit-button {
+        background-color: #e6b207;
+        color: #FFFFFF;
+        padding: 5px;
+        border: 0;
+        margin: 2px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .site-cred .cred-card .cred-card-footer .delete-button {
+        background-color: #a3170d;
+        color: #FFFFFF;
+        padding: 5px;
+        border: 0;
+        margin: 2px;
+        border-radius: 5px;
+        cursor: pointer;
     }
 
     .cred-modal .uk-modal-dialog {
