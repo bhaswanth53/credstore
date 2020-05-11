@@ -21,7 +21,7 @@ block content
                 img(src="/images/2.png")
             div(class="uk-padding uk-hidden@m")
                 include ../messages
-                form(class="auth-form small" method="POST" action="/register")
+                form(class="auth-form small" id="register-form" method="POST" action="/register")
                     div(class="uk-margin")
                         div(class="uk-inline")
                             span(class="uk-form-icon" uk-icon="user")
@@ -33,11 +33,11 @@ block content
                     div(class="uk-margin")
                         div(class="uk-inline")
                             span(class="uk-form-icon" uk-icon="lock")
-                            input(type="password" class="uk-input" name="password" placeholder="Password")
+                            input(type="password" class="uk-input" name="password" id="password" placeholder="Password")
                     div(class="uk-margin")
                         div(class="uk-inline")
                             span(class="uk-form-icon" uk-icon="lock")
-                            input(type="password" class="uk-input" name="cpassword" placeholder="Confirm Password")
+                            input(type="password" class="uk-input" name="cpassword" id="cpassword" placeholder="Confirm Password")
                     div(class="uk-margin")
                         button(type="submit" class="uk-button auth-submit uk-width-1-1") Register
                 div(class="uk-width-1-1 card-footer")

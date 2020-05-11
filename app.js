@@ -75,6 +75,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/uikit', express.static(path.join(__dirname + '/node_modules/uikit/dist/')));
 app.use('/jquery', express.static(path.join(__dirname + '/node_modules/jquery/dist/')));
 app.use("/datatables", express.static(path.join(__dirname + '/node_modules/datatables/media')))
+app.use("/jquery-validation", express.static(path.join(__dirname + '/node_modules/jquery-validation/dist/')))
 
 const port = process.env.PORT || 8080
 
