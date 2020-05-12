@@ -7,6 +7,7 @@ const UserController = require("../controllers/user")
 const CategoryController = require("../controllers/category")
 const CredentialController = require("../controllers/credentials")
 const WebsiteController = require("../controllers/website")
+const NotesController = require("../controllers/notes")
 
 // Validators
 const AuthValidator = require("../validation/auth")
@@ -43,6 +44,9 @@ router.post("/user/credentials/:id/add", CredentialController.addCredential)
 router.get("/user/websites", ensureAuth, WebsiteController.listWebsites)
 router.get("/user/websites/:id", ensureAuth, WebsiteController.viewWebsite)
 router.post("/user/websites/add", WebsiteController.addWebsite)
+
+// Notes Routes
+router.get("/user/notes", ensureAuth, NotesController.listNotes)
 
 // User Routes
 router.get("/user/dashboard",UserController.dashboard)

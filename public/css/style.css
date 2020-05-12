@@ -812,3 +812,32 @@ body {
     }
 
 /* End of Website Page */
+
+/* Notes Page */
+
+.note-card .note-card-body img {
+    width: 150px;
+    height: 150px;
+    padding: 25px;
+    background-color: #030D1C;
+}
+
+.note-card .note-card-footer {
+    margin-top: 10px;
+}
+
+.note-card .note-card-footer p {
+    color: #c7ced9;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 15px;
+}
+
+.note-link:hover {
+    text-decoration: none;
+}
+
+.note-link:hover p {
+    color: #3F5EFb;
+}
+
+/*  End Of Note Page */
