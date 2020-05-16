@@ -47,6 +47,9 @@ router.post("/user/websites/add", WebsiteController.addWebsite)
 
 // Notes Routes
 router.get("/user/notes", ensureAuth, NotesController.listNotes)
+router.get("/user/notes/add", ensureAuth, NotesController.newNote)
+router.get("/user/notes/:id", ensureAuth, NotesController.viewNote)
+router.post("/user/notes/add", NotesController.addNote)
 
 // User Routes
 router.get("/user/dashboard",UserController.dashboard)

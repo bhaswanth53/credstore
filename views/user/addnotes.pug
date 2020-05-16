@@ -1,0 +1,14 @@
+extends ../layouts/dashboard
+
+block content
+    div(class="uk-container dashboard")
+        div(class="uk-padding")
+            h1(class="title") Notes
+            include ../messages
+            form(method="POST" action="/user/notes/add" class="note-form")
+                div(class="uk-margin")
+                    input(type="text" class="uk-input note-title" name="title" placeholder="Enter Your Title Here.....")
+                div(class="uk-margin")
+                    textarea(class="uk-textarea note-content" name="content" id="textarea" placeholder="Add your content here.....")
+                div(class="uk-margin")
+                    button(type="submit" class="uk-button note-submit") Add Note

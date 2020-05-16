@@ -1,0 +1,8 @@
+extends ../layouts/dashboard
+
+block content
+    div(class="uk-container dashboard")
+        div(class="uk-padding")
+            h1(class="title") #{note.title}
+            include ../messages
+            p(class="note-content") #{note.content}

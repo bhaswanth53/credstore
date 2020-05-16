@@ -14,11 +14,13 @@ $(document).on('click', '.cat-radio label', function() {
     } */
 })
 
-$('.datatable').dataTable();
+$('.datatable').dataTable()
+
+$("#textarea").autoResize()
 
 
 /* Validation for Auth Pages */
-$("#register-form").validate({
+/* $("#register-form").validate({
     rules: {
         name: {
             required: true,
@@ -62,4 +64,4 @@ $("#register-form").validate({
     submitHandler: function(form) {
         form.submit()
     }
-})
+}) */

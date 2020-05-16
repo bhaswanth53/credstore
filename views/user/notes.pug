@@ -6,16 +6,14 @@ block content
             h1(class="title") Notes
             include ../messages
             div(class="uk-grid-match" uk-grid)
-                - var i = 0
-                while i < 20
+                each note, i in notes
                     div(class="uk-width-1-2@s uk-width-1-4@m")
-                        a(href="" class="note-link")
+                        a(href="/user/notes/"+note._id class="note-link")
                             div(class="note-card uk-text-center")
                                 div(class="note-card-body")
                                     img(src="/images/note.svg")
                                 div(class="note-card-footer")
-                                    p This is the title
-                    - i++
-    a(href="")
+                                    p #{note.title}
+    a(href="/user/notes/add")
         button(class="catadd" uk-tooltip="Add Note")
             span(uk-icon="plus")

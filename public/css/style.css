@@ -840,4 +840,41 @@ body {
     color: #3F5EFb;
 }
 
+.note-form input.note-title {
+    background-color: #030D1C;
+    font-size: 25px;
+    height: 70px;
+    color: #3F5EFb;
+    font-family: 'Josefin Sans', sans-serif;
+    border: 0;
+}
+
+.note-form input.note-title::placeholder {
+    color: #3F5EFb;
+}
+
+.note-form .note-content {
+    background-color: #030D1C;
+    color: #3F5EFb;
+    font-size: 20px;
+    font-family: 'Josefin Sans', sans-serif;
+    resize: none;
+    border: 0;
+}
+
+.note-form .note-content::placeholder {
+    color: #3F5EFb;
+}
+
+.note-form .note-submit {
+    background-color: #3F5EFb;
+    color: #FFFFFF;
+}
+
+.note-content {
+    color: #c7ced9;
+    font-size: 20px;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
 /*  End Of Note Page */
