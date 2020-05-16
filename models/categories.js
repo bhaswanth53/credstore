@@ -3,8 +3,8 @@ const mongoose = require("mongoose")
 let categorySchema = mongoose.Schema({
     name: {
         type: String,
-        required: true,
-        maxlength: 191
+        maxlength: 191,
+        default: "Uncategorized"
     },
     user: {
         type: String,

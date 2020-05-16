@@ -18,50 +18,19 @@ $('.datatable').dataTable()
 
 $("#textarea").autoResize()
 
+var deletecategory = (id) => {
+    alert("Clicked")
+} 
 
-/* Validation for Auth Pages */
-/* $("#register-form").validate({
-    rules: {
-        name: {
-            required: true,
-            maxlength: 191
-        },
-        email: {
-            required: true,
-            email: true,
-            maxlength: 191
-        },
-        password: {
-            required: true,
-            minlength: 8,
-            maxlength: 32
-        },
-        cpassword: {
-            required: true,
-            equalTo: "#password"
-        }
-    },
-    messages: {
-        name: {
-            required: "Name is required",
-            maxlength: "Name must not exceeded more than 191 characters"
-        },
-        email: {
-            required: "Email is required",
-            email: "Email is invalid",
-            maxlength: "Email is not longer than 191 characters"
-        },
-        password: {
-            required: "Password is required",
-            minlength: "Password required min 8 characters",
-            maxlength: "Password is no longer than 32 characters"
-        },
-        cpassword: {
-            required: "Please confirm the password",
-            equalTo: "Passwords are not matching"
-        }
-    },
-    submitHandler: function(form) {
-        form.submit()
+$(document).on('click', ".delete-category", function() {
+    if(confirm("Are you sure you want to delete this category?")) {
+        overlay.style.display = "block"
+        var id = $(this).attr("data-id")
+        var url = "/user/categories/" + id
+        axios.delete(url)
+            .then((response) => {
+                alert("Category has been deleted successfully")
+                window.location.reload()
+            })
     }
-}) */
+})

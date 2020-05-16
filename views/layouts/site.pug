@@ -18,10 +18,14 @@ html
                     ul(class="uk-navbar-nav uk-visible@m")
                         li
                             a(href="/") Home
-                        li
-                            a(href="/login") Login
-                        li
-                            a(href="/register") Register
+                        if user
+                            li
+                                a(href="/user/dashboard") Dashboard
+                        else
+                            li
+                                a(href="/login") Login
+                            li
+                                a(href="/register") Register
 
         block content
 

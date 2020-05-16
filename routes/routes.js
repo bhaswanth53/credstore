@@ -33,6 +33,7 @@ router.post("/login", AuthController.loginUser)
 // Category Routes
 router.get("/user/categories", ensureAuth, CategoryController.viewCategories)
 router.post("/user/categories/add", [ensureAuth, CategoryValidator.addCategory], CategoryController.addCategory)
+router.delete("/user/categories/:id", CategoryController.deleteCategory)
 
 // Credential Routes
 router.get("/user/credentials", ensureAuth, CredentialController.listSites)

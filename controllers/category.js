@@ -29,3 +29,30 @@ exports.addCategory = (req, res) => {
         }
     })
 }
+
+exports.deleteCategory = (req, res) => {
+    if(!req.user._id) {
+        res.status(500).send()
+    }
+    else {
+        let query = { _id: req.params.id }
+        Category.findById(req.params.id, (err, category) => {
+            if(err) {
+                res.status(500).send()
+            }
+            else {
+                if(category.user != req.user._id) {
+                    res.status(500).send()
+                } else {
+                    Category.remove(query, (err) => {
+                        if(err) {
+                            res.status(500).send()
+                        } else {
+                            res.send("success")
+                        }
+                    })
+                }
+            }
+        })
+    }
+}
