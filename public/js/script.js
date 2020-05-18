@@ -68,3 +68,81 @@ $(document).on('click', '.info-button', function() {
             })
     }
 })
+
+$(document).on("click", ".site-delete", function() {
+    var cred = $(this).attr("data-site")
+    var url = "/user/delete-site/" + cred
+    if(confirm("Deleting site will delete all the crdentials in this site. Are you sure you want to delete?")) {
+        overlay.style.display = "block" 
+        axios.delete(url)
+        .then((response) => {
+            overlay.style.display = "none"
+            if(response.status == 200) {
+                alert("Site has been deleted")
+                window.location.reload()
+            } else {
+                alert("Error occured")
+            }
+        })
+        .catch((error) => {
+            overlay.style.display = "none"
+            alert("Error occured")
+            console.log(error.response)
+        })
+    }
+})
+
+$(document).on("click", "#edit-cred-button", function() {
+    var mpin = prompt("Please enter your mpin to edit the credentials")
+    var cred = $(this).attr("data-cred")
+    if(mpin == "") alert("Please enter your mpin")
+    else {
+        // UIkit.modal("#view-cred-modal").show()
+        overlay.style.display = "block"
+        let info = {
+            mpin,
+            cred
+        }
+        axios.post("/user/get-credential", info)
+            .then((response) => {
+                overlay.style.display = "none"
+                if(response.status == 200) {
+                    $("#edit-cred-form").attr("action", "/user/credentials/edit/" + response.data.id)
+                    $("#ed-username").val(response.data.username)
+                    $("#ed-email").val(response.data.email)
+                    $("#ed-mobile").val(response.data.mobile)
+                    $("#ed_addinfo").val(response.data.addinfo)
+                    UIkit.modal("#edit-cred-modal").show()
+                } else if(response.status == 205) {
+                    alert("MPIN is not correct")
+                } else if(response.status == 206) {
+                    alert("User not found")
+                }
+            })
+            .catch((error) => {
+                overlay.style.display = "none"
+                console.log(error.response)
+            })
+    }
+})
+
+$(document).on("click", "#delete-cred-button", function() {
+    var cred = $(this).attr("data-cred")
+    if(confirm("Are you sure you want to delete?")) {
+        overlay.style.display = "block"
+        let url = "/user/delete-cred/" + cred
+        axios.delete(url)
+            .then((response) => {
+                if(response.status == 200) {
+                    alert("Credential has been deleted successfully")
+                    window.location.reload()
+                } else {
+                    alert("Error occured")
+                }
+            })
+            .catch((error) => {
+                alert("Error occured")
+                console.log(error.response)
+            })
+    }
+})

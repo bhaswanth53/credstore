@@ -84,26 +84,31 @@ exports.addCredential = (req, res) => {
         if(err) throw err
         else {
             req.flash("success", "Credential has been added successfully")
-            res.redirect("/user/credentials/"+req.params.id)
+            res.redirect("/user/credentials")
         }
     })
 }
 
-exports.compareMpin = (req, res) => {
-    if(!req.user) {
-        res.status(206).send()
-    } else {
-        bcrypt.compare(req.body.mpin, req.user.mpin, (err, isMatch) => {
-            if(err) {
-                res.status(202).send()
-            }
-            if(isMatch) {
-                res.status(200).send()
-            } else {
-                res.status(205).send()
-            }
-        })
-    }
+exports.editCredential = (req, res) => {
+    // Password encrypt
+    let password = req.body.password
+    const cryptr = new Cryptr(process.env.APP_SECRET)
+    let passhash = cryptr.encrypt(password)
+
+    let credential = {}
+    credential.username = req.body.username
+    credential.email = req.body.email
+    credential.mobile = req.body.mobile
+    credential.password = passhash
+    credential.add_info = req.body.add_info
+    let query = { _id: req.params.id }
+    Credential.updateOne(query, credential, (err) => {
+        if(err) throw err
+        else {
+            req.flash("success", "Credential has been updated successfully")
+            res.redirect("/user/credentials")
+        }
+    })
 }
 
 exports.getCredential = (req, res) => {
@@ -125,6 +130,7 @@ exports.getCredential = (req, res) => {
                         res.setHeader("Content-Type", "application/json");
                         res.status(200);
                         res.json({
+                            id: credential._id,
                             username: credential.username,
                             email: credential.email,
                             mobile: credential.mobile,
@@ -135,6 +141,52 @@ exports.getCredential = (req, res) => {
                 })
             } else {
                 res.status(205).send()
+            }
+        })
+    }
+}
+
+exports.deleteSite = (req, res) => {
+    if(!req.user) {
+        res.status(500).send()
+    } else {
+        Site.findById(req.params.id, (err, site) => {
+            if(site.user != req.user._id) {
+                res.status(500).send()
+            } else {
+                Credential.remove({ site: site._id }, (err) => {
+                    if(err) {
+                        res.status(500).send()
+                    } else {
+                        Site.remove({ _id: req.params.id }, (err) => {
+                            if(err) {
+                                res.status(500).send()
+                            } else {
+                                res.send("Success")
+                            }
+                        })
+                    }
+                })
+            }
+        })
+    }
+}
+
+exports.deleteCredential = (req, res) => {
+    if(!req.user) {
+        res.status(500).send()
+    } else {
+        Credential.findById(req.params.id, (err, credential) => {
+            if(credential.user != req.user._id) {
+                res.status(500).send()
+            } else {
+                Credential.remove({ _id: req.params.id }, (err) => {
+                    if(err) {
+                        res.status(500).send()
+                    } else {
+                        res.send("Success")
+                    }
+                })
             }
         })
     }

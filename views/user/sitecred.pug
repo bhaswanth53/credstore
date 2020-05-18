@@ -48,9 +48,9 @@ block content
                                     div(class="uk-button-group")
                                         button(class="info-button" data-cred=cred._id)
                                             span(uk-icon="info")
-                                        button(class="edit-button")
+                                        button(class="edit-button" id="edit-cred-button" data-cred=cred._id)
                                             span(uk-icon="pencil")
-                                        button(class="delete-button")
+                                        button(class="delete-button" id="delete-cred-button" data-cred=cred._id)
                                             span(uk-icon="trash")
     button(class="catadd" uk-tooltip="Add Credential" uk-toggle="target: #add-cred-modal")
         span(uk-icon="plus")
@@ -96,17 +96,47 @@ block content
                         tbody
                             tr 
                                 th Username
-                                td(id="cred-username") bhaswanth65
+                                td(id="cred-username") username
                             tr
                                 th Email
-                                td(id="cred-email") bhaswanthkumar6@gmail.com
+                                td(id="cred-email") email
                             tr
                                 th Mobile
-                                td(id="cred-mobile") +919985814059
+                                td(id="cred-mobile") mobile
                             tr
                                 th Password
-                                td(id="cred-password") Basu@533274
+                                td(id="cred-password") password
                             tr
                                 th(colspan="2") Additional Info
                             tr
                                 td(colspan="2" id="cred-add") Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sed felis consequat, tempor velit at, varius libero. Nullam urna urna, laoreet ut posuere quis, sodales vel eros. Vivamus libero augue, pulvinar non est eu, condimentum tristique odio. Maecenas sit amet egestas nunc.
+
+    // Edit Credential Modal
+    div(class="cred-modal" id="edit-cred-modal" uk-modal)
+        div(class="uk-modal-dialog")
+            button(class="uk-modal-close-default" type="button" uk-close)
+            div(class="uk-modal-header")
+                h2(class="uk-modal-title") Edit Credential
+            form(class="edit-cred-form" id="edit-cred-form" method="POST" action="")
+                div(class="uk-modal-body")
+                    div(class="uk-margin")
+                        label(class="uk-form-label" for="username") Username
+                        input(type="text" class="uk-input" name="username" id="ed-username")
+                    div(class="uk-margin")
+                        label(class="uk-form-label" for="email") Email
+                        input(type="email" class="uk-input" name="email" id="ed-email")
+                    div(class="uk-margin")
+                        label(class="uk-form-label" for="mobile") Mobile
+                        input(type="text" class="uk-input" name="mobile" id="ed-mobile")
+                    div(class="uk-margin")
+                        label(class="uk-form-label" for="password") Password
+                        input(type="password" class="uk-input" name="password" id="ed-password")
+                    div(class="uk-margin")
+                        label(class="uk-form-label" for="confirm_password") Confirm Password
+                        input(type="password" class="uk-input" name="confirm_password" id="ed-confirm_password")
+                    div(class="uk-margin")
+                        label(class="uk-form-label" for="add_info") Additional Info
+                        textarea(class="uk-textarea" rows="4" name="add_info" id="ed_addinfo")
+                div(class="uk-modal-footer uk-text-right@m")
+                    button(class="uk-button close-button uk-modal-close" type="button") Cancel
+                    button(class="uk-button add-button" type="submit") Submit

@@ -41,6 +41,9 @@ router.get("/user/credentials/:id", ensureAuth, CredentialController.listCredent
 router.post("/user/credentials/add", SiteValidator.addSite, CredentialController.addSite)
 router.post("/user/credentials/:id/add", CredentialController.addCredential)
 router.post("/user/get-credential", CredentialController.getCredential)
+router.post("/user/credentials/edit/:id", CredentialController.editCredential)
+router.delete("/user/delete-site/:id", CredentialController.deleteSite)
+router.delete("/user/delete-cred/:id", CredentialController.deleteCredential)
 
 // Website Routes
 router.get("/user/websites", ensureAuth, WebsiteController.listWebsites)
