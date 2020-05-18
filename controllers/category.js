@@ -5,7 +5,7 @@ const Category = require("../models/categories")
 const icons = require("../icons")
 
 exports.viewCategories = (req, res) => {
-    Category.find({}, (err, categories) => {
+    Category.find({ user: req.user._id }, (err, categories) => {
         if(err) throw err
         else {
             res.render("user/categories", {

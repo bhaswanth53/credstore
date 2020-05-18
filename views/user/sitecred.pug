@@ -12,8 +12,12 @@ block content
                             div(class="site-card-header" uk-grid)
                                 div(class="uk-width-1-2@m")
                                     p(class="sc-name")
-                                        span(uk-icon="tag")
-                                        | #{category.name}
+                                        if category
+                                            span(uk-icon=category.icon)
+                                            |  #{category.name}
+                                        else
+                                            span(uk-icon="tag")
+                                            |   Uncategorized
                                 div(class="uk-width-1-2@m uk-text-right@m")
                                     a(href=site.url class="site-link" target="_blank") #{site.url}
                             div(class="site-card-body")
@@ -42,7 +46,7 @@ block content
                                 div(class="cred-card-footer uk-text-right")
                                     // button(class="uk-button uk-width-1-1" uk-toggle="target: #view-cred-modal") View Credential
                                     div(class="uk-button-group")
-                                        button(class="info-button" uk-toggle="target: #view-cred-modal")
+                                        button(class="info-button" data-cred=cred._id)
                                             span(uk-icon="info")
                                         button(class="edit-button")
                                             span(uk-icon="pencil")
@@ -88,21 +92,21 @@ block content
                 div(class="uk-modal-header")
                     h2(class="uk-modal-title") Credential Info
                 div(class="uk-modal-body")
-                    table(class="view-cred-table uk-text-left")
+                    table(class="view-cred-table uk-text-left uk-width-1-1")
                         tbody
                             tr 
                                 th Username
-                                td bhaswanth65
+                                td(id="cred-username") bhaswanth65
                             tr
                                 th Email
-                                td bhaswanthkumar6@gmail.com
+                                td(id="cred-email") bhaswanthkumar6@gmail.com
                             tr
                                 th Mobile
-                                td +919985814059
+                                td(id="cred-mobile") +919985814059
                             tr
                                 th Password
-                                td Basu@533274
+                                td(id="cred-password") Basu@533274
                             tr
                                 th(colspan="2") Additional Info
                             tr
-                                td(colspan="2") Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sed felis consequat, tempor velit at, varius libero. Nullam urna urna, laoreet ut posuere quis, sodales vel eros. Vivamus libero augue, pulvinar non est eu, condimentum tristique odio. Maecenas sit amet egestas nunc.
+                                td(colspan="2" id="cred-add") Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sed felis consequat, tempor velit at, varius libero. Nullam urna urna, laoreet ut posuere quis, sodales vel eros. Vivamus libero augue, pulvinar non est eu, condimentum tristique odio. Maecenas sit amet egestas nunc.

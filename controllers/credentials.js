@@ -1,9 +1,11 @@
 const Cryptr = require("cryptr")
+const bcrypt = require("bcryptjs")
 
 // Models
 const Category = require("../models/categories")
 const Site = require("../models/sites")
 const Credential = require("../models/credentials")
+const User = require("../models/users")
 
 exports.listSites = (req, res) => {
     Category.find({}, (err, categories) => {
@@ -85,4 +87,55 @@ exports.addCredential = (req, res) => {
             res.redirect("/user/credentials/"+req.params.id)
         }
     })
+}
+
+exports.compareMpin = (req, res) => {
+    if(!req.user) {
+        res.status(206).send()
+    } else {
+        bcrypt.compare(req.body.mpin, req.user.mpin, (err, isMatch) => {
+            if(err) {
+                res.status(202).send()
+            }
+            if(isMatch) {
+                res.status(200).send()
+            } else {
+                res.status(205).send()
+            }
+        })
+    }
+}
+
+exports.getCredential = (req, res) => {
+    if(!req.user) {
+        res.status(206).send()
+    } else {
+        bcrypt.compare(req.body.mpin, req.user.mpin, (err, isMatch) => {
+            if(err) {
+                res.status(202).send()
+            }
+            if(isMatch) {
+                Credential.findById(req.body.cred, (err, credential) => {
+                    if(err) {
+                        res.status(204).send()
+                    } else {
+                        const cryptr = new Cryptr(process.env.APP_SECRET)
+                        let password = cryptr.decrypt(credential.password)
+                
+                        res.setHeader("Content-Type", "application/json");
+                        res.status(200);
+                        res.json({
+                            username: credential.username,
+                            email: credential.email,
+                            mobile: credential.mobile,
+                            password: password,
+                            addinfo: credential.add_info
+                        })
+                    }
+                })
+            } else {
+                res.status(205).send()
+            }
+        })
+    }
 }

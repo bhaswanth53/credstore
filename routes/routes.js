@@ -40,6 +40,7 @@ router.get("/user/credentials", ensureAuth, CredentialController.listSites)
 router.get("/user/credentials/:id", ensureAuth, CredentialController.listCredentials)
 router.post("/user/credentials/add", SiteValidator.addSite, CredentialController.addSite)
 router.post("/user/credentials/:id/add", CredentialController.addCredential)
+router.post("/user/get-credential", CredentialController.getCredential)
 
 // Website Routes
 router.get("/user/websites", ensureAuth, WebsiteController.listWebsites)
