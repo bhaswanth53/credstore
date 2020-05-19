@@ -167,3 +167,25 @@ $(document).on("click", ".website-delete", function() {
             })
     }
 })
+
+$(document).on("click", "#note-delete", function() {
+    if(confirm("Are you sure you want to delete this note?")) {
+        overlay.style.display = "block"
+        var note = $(this).attr("data-note")
+        var url = "/user/delete-note/" + note
+        axios.delete(url)
+            .then((response) => {
+                overlay.style.display = "none"
+                if(response.status == 500) {
+                    alert("Something went wrong, please try again.")
+                } else {
+                    alert("Note has been deleted successfully")
+                    window.location.href = "/user/notes"
+                }
+            })
+            .catch((error) => {
+                alert("Something went wrong, please try again")
+                console.log(error.response)
+            })
+    }
+})

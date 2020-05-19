@@ -936,4 +936,34 @@ body {
     font-family: 'Josefin Sans', sans-serif;
 }
 
+.note-edit {
+    color: #000000;
+    background-color: #E6B207;
+    width: 45px;
+    height: 45px;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    -webkit-box-shadow: 5px 5px 15px -7px #000000; 
+    box-shadow: 5px 5px 15px -7px #000000;
+}
+
+.note-delete {
+    color: #FFFFFF;
+    background-color: #a3170d;
+    width: 45px;
+    height: 45px;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    position: fixed;
+    bottom: 25px;
+    left: 25px;
+    -webkit-box-shadow: 5px 5px 15px -7px #000000; 
+    box-shadow: 5px 5px 15px -7px #000000;
+}
+
 /*  End Of Note Page */

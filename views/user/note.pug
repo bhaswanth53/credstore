@@ -5,4 +5,11 @@ block content
         div(class="uk-padding")
             h1(class="title") #{note.title}
             include ../messages
-            p(class="note-content") #{note.content}
+            p(class="note-content") !{note.content}
+
+    a(href="/user/notes/edit/" + note._id)
+        button(class="note-edit" uk-tooltip="Edit Note")
+            span(uk-icon="pencil")
+
+    button(class="note-delete" id="note-delete" uk-tooltip="Delete Note" data-note=note._id)
+        span(uk-icon="trash")

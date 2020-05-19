@@ -57,7 +57,10 @@ router.delete("/user/delete-website/:id", WebsiteController.deleteWebsite)
 router.get("/user/notes", ensureAuth, NotesController.listNotes)
 router.get("/user/notes/add", ensureAuth, NotesController.newNote)
 router.get("/user/notes/:id", ensureAuth, NotesController.viewNote)
+router.get("/user/notes/edit/:id", ensureAuth, NotesController.editNote)
 router.post("/user/notes/add", NotesController.addNote)
+router.post("/user/notes/edit/:id", NotesController.updateNote)
+router.delete("/user/delete-note/:id", NotesController.deleteNote)
 
 // User Routes
 router.get("/user/dashboard",UserController.dashboard)

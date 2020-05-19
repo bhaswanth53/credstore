@@ -37,3 +37,51 @@ exports.viewNote = (req, res) => {
         }
     })
 }
+
+exports.editNote = (req, res) => {
+    Note.findById(req.params.id, (err, note) => {
+        if(err) throw err
+        else {
+            res.render("user/editnote", {
+                note
+            })
+        }
+    })
+}
+
+exports.updateNote = (req, res) => {
+    let note = {}
+    note.title = req.body.title
+    note.content = req.body.content
+    Note.updateOne({ _id: req.params.id }, note, (err) => {
+        if(err) throw err
+        else {
+            req.flash("success", "Note has been updated successfully")
+            res.redirect("/user/notes")
+        }
+    })
+}
+
+exports.deleteNote = (req, res) => {
+    if(!req.user) {
+        res.status(500).send()
+    } else {
+        Note.findById(req.params.id, (err, note) => {
+            if(err) {
+                res.status(500).send()
+            } else {
+                if(note.user != req.user._id) {
+                    res.status(500).send()
+                } else {
+                    Note.remove({ _id: req.params.id }, (err) => {
+                        if(err) {
+                            res.status(500).send()
+                        } else {
+                            res.send("success")
+                        }
+                    })
+                }
+            }
+        })
+    }
+}
