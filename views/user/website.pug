@@ -22,3 +22,7 @@ block content
                             th(colspan="2") Description
                         tr
                             td(colspan="2") #{website.description}
+                        tr
+                            td(colspan="2" class="uk-text-center")
+                                a(href="/user/websites/edit/" + website._id)
+                                    button(class="uk-button web-edit") Edit Website

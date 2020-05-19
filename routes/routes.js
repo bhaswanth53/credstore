@@ -48,7 +48,10 @@ router.delete("/user/delete-cred/:id", CredentialController.deleteCredential)
 // Website Routes
 router.get("/user/websites", ensureAuth, WebsiteController.listWebsites)
 router.get("/user/websites/:id", ensureAuth, WebsiteController.viewWebsite)
+router.get("/user/websites/edit/:id", ensureAuth, WebsiteController.editWebsite)
 router.post("/user/websites/add", WebsiteController.addWebsite)
+router.post("/user/websites/edit/:id", WebsiteController.updateWebsite)
+router.delete("/user/delete-website/:id", WebsiteController.deleteWebsite)
 
 // Notes Routes
 router.get("/user/notes", ensureAuth, NotesController.listNotes)

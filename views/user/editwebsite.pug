@@ -1,0 +1,27 @@
+extends ../layouts/dashboard
+
+block content
+    div(class="uk-container dashboard")
+        div(class="uk-padding uk-text-center")
+            h1(class="title") Edit Website
+            include ../messages
+            form(class="edit-website-form" method="POST" action="/user/websites/edit/" + website._id)
+                div(class="uk-margin")
+                    label(class="uk-form-label" for="category") Category
+                    select(class="uk-select" name="category" id="category")
+                        each category, i in categories
+                            if website.category == category._id
+                                option(value=category._id selected) #{category.name}
+                            else
+                                option(value=category._id) #{category.name}
+                div(class="uk-margin")
+                    label(class="uk-form-label" for="name") Name
+                    input(type="text" class="uk-input" name="name" id="name" value=website.name)
+                div(class="uk-margin")
+                    label(class="uk-form-label" for="url") URL
+                    input(type="url" class="uk-input" name="url" id="url" value=website.url)
+                div(class="uk-margin")
+                    label(class="uk-form-label" for="description") Description
+                    textarea(class="uk-textarea" rows="4" name="description" id="description")= website.description
+                div(class="uk-margin")
+                    button(class="uk-button add-button" type="submit") Submit

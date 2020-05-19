@@ -37,11 +37,60 @@ exports.viewWebsite = (req, res) => {
         if(err) throw err
         else {
             Category.findById(website.category, (err, category) => {
-                res.render("user/website", {
-                    website,
-                    category
-                })
+                if(err) throw err
+                else {
+                    res.render("user/website", {
+                        website,
+                        category
+                    })
+                }
             })
         }
     })
+}
+
+exports.editWebsite = (req, res) => {
+    Website.findById(req.params.id, (err, website) => {
+        if(err) throw err
+        else {
+            Category.find({}, (err, categories) => {
+                if(err) throw err
+                else {
+                    res.render("user/editwebsite", {
+                        website,
+                        categories
+                    })
+                }
+            })
+        }
+    })
+}
+
+exports.updateWebsite = (req, res) => {
+    let site = {}
+    site.category = req.body.category
+    site.name = req.body.name
+    site.url = req.body.url
+    site.description = req.body.description
+    Website.updateOne({ _id: req.params.id }, site, (err) => {
+        if(err) throw err
+        else {
+            req.flash("success", "Website has been updated successfully")
+            res.redirect("/user/websites")
+        }
+    })
+}
+
+exports.deleteWebsite = (req, res) => {
+    if(!req.user) {
+        res.status(500).send()
+    } else {
+        Website.remove({ _id: req.params.id }, (err) => {
+            if(err) {
+                res.status(500).send()
+            } else {
+                res.send("success")
+            }
+        })
+    }
 }

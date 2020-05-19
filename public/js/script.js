@@ -146,3 +146,24 @@ $(document).on("click", "#delete-cred-button", function() {
             })
     }
 })
+
+$(document).on("click", ".website-delete", function() {
+    var site = $(this).attr("data-site")
+    if(confirm("Are you sure you want to delete?")) {
+        overlay.style.display = "block"
+        let url = "/user/delete-website/" + site
+        axios.delete(url)
+            .then((response) => {
+                overlay.style.display = "none"
+                if(response.status == 500) {
+                    alert("Error occured")
+                } else {
+                    alert("Website has been deleted successfully")
+                    window.location.reload()
+                }
+            })
+            .catch((error) => {
+                alert("Error occured")
+            })
+    }
+})

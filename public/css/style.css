@@ -791,6 +791,38 @@ body {
         font-size: 15px;
     }
 
+    .edit-website-form {
+        text-align: left;
+    }
+
+    .edit-website-form .uk-form-label {
+        color: #3F5EFb;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 15px;
+    }
+
+    .edit-website-form .uk-input {
+        color: #3F5EFb;
+        font-family: 'Josefin Sans', sans-serif;
+        background-color: transparent;
+        border-color: #3F5EFb;
+    }
+
+    .edit-website-form .uk-select {
+        color: #3F5EFb;
+        font-family: 'Josefin Sans', sans-serif;
+        background-color: transparent;
+        border-color: #3F5EFb;
+    }
+
+    .edit-website-form .uk-textarea {
+        color: #3F5EFb;
+        font-family: 'Josefin Sans', sans-serif;
+        background-color: transparent;
+        border-color: #3F5EFb;
+        resize: none;
+    }
+
 /* End of credentials page */
 
 
@@ -821,6 +853,21 @@ body {
 
     .wbinfo-table .web-url {
         color: #c7ced9;
+    }
+
+    .web-edit {
+        background-color: #e6b207;
+        color: #000000;
+        -webkit-box-shadow: 0px 0px 15px -3px #E6B207; 
+        box-shadow: 0px 0px 15px -3px #E6B207;
+        border-radius: 5px;
+    }
+
+    .edit-website-form .add-button {
+        background-color: #3F5EFb;
+        color: #FFFFFF;
+        font-family: 'Josefin Sans', sans-serif;
+        text-transform: none;
     }
 
 /* End of Website Page */
