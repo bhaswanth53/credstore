@@ -1,5 +1,8 @@
 const User = require("../models/users")
 const bcrypt = require("bcryptjs")
+const securepin = require("secure-pin")
+
+const { transporter } = require("../constants")
 
 exports.viewSettings = (req, res) => {
     res.render("user/settings")
@@ -64,6 +67,40 @@ exports.changePin = (req, res) => {
             } else {
                 req.flash("error", "Incorrect old pin")
                 res.redirect("/user/settings")
+            }
+        })
+    }
+}
+
+exports.generatePin = (req, res) => {
+    if(!req.user) {
+        res.status(500).send()
+    } else {
+        let salt = bcrypt.genSaltSync(10)
+        let pin = securepin.generatePinSync(4)
+        let pinHash = bcrypt.hashSync(pin, salt)
+        let updated = {
+            mpin: pinHash
+        }
+        let query = { _id: req.user._id }
+        User.updateOne(query, updated, (err) => {
+            if(err) {
+                res.status(500).send()
+            } else {
+                let mailOptions = {
+                    from: process.env.MAIL_USERNAME,
+                    to: req.user.email,
+                    subject: "New MPIN Generated - Credstore",
+                    html: `<h1>New MPIN Generated</h1><p>Your new MPIN has been generated successfully. Please check the new MPIN below.</p><h3>${pin}</h3>`
+                }
+
+                transporter.sendMail(mailOptions, (err, info) => {
+                    if(err) {
+                        res.status(500).send()
+                    } else {
+                        res.send("success")
+                    }
+                })
             }
         })
     }

@@ -189,3 +189,22 @@ $(document).on("click", "#note-delete", function() {
             })
     }
 })
+
+$("#forgot-pin").on("click", function() {
+    let url = "/user/forgot-pin"
+    overlay.style.display = "block"
+    axios.delete(url)
+        .then((response) => {
+            overlay.style.display = "none"
+            if(response.status == 200) {
+                alert("New MPIN has been generated successfully and sent to your registered email address.")
+            } else {
+                alert("Some error occured. Please try again later.")
+            }
+        })
+        .catch((error) => {
+            overlay.style.display = "none"
+            alert("Some error occured. Please try again later.")
+            console.log(error.response)
+        })
+})

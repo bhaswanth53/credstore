@@ -67,6 +67,7 @@ router.delete("/user/delete-note/:id", NotesController.deleteNote)
 router.get("/user/settings", ensureAuth, SettingsController.viewSettings)
 router.post("/user/change-password", SettingsController.changePassword)
 router.post("/user/change-pin", SettingsController.changePin)
+router.delete("/user/forgot-pin", SettingsController.generatePin)
 
 // User Routes
 router.get("/user/dashboard",UserController.dashboard)
