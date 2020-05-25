@@ -8,6 +8,7 @@ const CategoryController = require("../controllers/category")
 const CredentialController = require("../controllers/credentials")
 const WebsiteController = require("../controllers/website")
 const NotesController = require("../controllers/notes")
+const SettingsController = require("../controllers/settings")
 
 // Validators
 const AuthValidator = require("../validation/auth")
@@ -61,6 +62,10 @@ router.get("/user/notes/edit/:id", ensureAuth, NotesController.editNote)
 router.post("/user/notes/add", NotesController.addNote)
 router.post("/user/notes/edit/:id", NotesController.updateNote)
 router.delete("/user/delete-note/:id", NotesController.deleteNote)
+
+// Settings Routes
+router.get("/user/settings", ensureAuth, SettingsController.viewSettings)
+router.post("/user/change-password", SettingsController.changePassword)
 
 // User Routes
 router.get("/user/dashboard",UserController.dashboard)

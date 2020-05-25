@@ -967,3 +967,54 @@ body {
 }
 
 /*  End Of Note Page */
+
+/* Settings Page */
+
+.settings-card {
+    background-color: #030D1C;
+}
+
+.settings-card-header {
+    padding: 15px;
+}
+
+.settings-card-header p {
+    color: #3F5EFb;
+    font-size: 25px;
+    font-family: 'Josefin Sans', sans-serif;
+    margin: 0;
+}
+
+.settings-card-body {
+    padding: 15px;
+}
+
+.settings-card-body .uk-form-label {
+    color: #3F5EFb;
+    font-size: 15px;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.settings-card-body .uk-input {
+    background-color: transparent;
+    color: #3F5EFb;
+    font-family: 'Josefin Sans', sans-serif;
+    border-color: #3F5EFb;
+}
+
+.settings-card-body .submit-button {
+    background-color: #3F5EFb;
+    color: #FFFFFF;
+    font-family: 'Josefin Sans', sans-serif;
+    text-transform: none;
+    margin-right: 5px;
+}
+
+.settings-card-body .forgot-pin {
+    background-color: #a3170d;
+    color: #FFFFFF;
+    font-family: 'Josefin Sans', sans-serif;
+    text-transform: none;
+}
+
+/* End of settings page */

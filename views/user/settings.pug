@@ -1,0 +1,46 @@
+extends ../layouts/dashboard
+
+block content
+    div(class="uk-container dashboard")
+        div(class="uk-padding")
+            h1(class="title uk-text-center") Settings
+            include ../messages
+            div(class="uk-grid-match uk-flex-center" uk-grid)
+                div(class="uk-width-1-2@s uk-width-1-3@m")
+                    div(class="settings-card")
+                        div(class="settings-card-header")
+                            p Change Password
+                        form(action="/user/change-password" method="POST")
+                            div(class="settings-card-body")
+                                div(class="uk-margin")
+                                    label(class="uk-form-label") Old Password
+                                    input(type="password" name="old_password" id="old_password" class="uk-input")
+                                div(class="uk-margin")
+                                    label(class="uk-form-label") New Password
+                                    input(type="password" name="new_password" id="new_password" class="uk-input")
+                                div(class="uk-margin")
+                                    label(class="uk-form-label") Confirm New Password
+                                    input(type="password" name="confirm_password" id="confirm_password" class="uk-input")
+                                div(class="uk-margin")
+                                    button(type="submit" class="uk-button submit-button") Change Password
+
+                div(class="uk-width-1-2@s uk-width-1-3@m")
+                    div(class="settings-card")
+                        div(class="settings-card-header")
+                            p Change MPIN
+                        form(action="" method="POST")
+                            div(class="settings-card-body")
+                                div(class="uk-margin")
+                                    label(class="uk-form-label") Old PIN
+                                    input(type="password" name="old_pin" id="old_pin" class="uk-input")
+                                div(class="uk-margin")
+                                    label(class="uk-form-label") New PIN
+                                    input(type="password" name="new_pin" id="new_pin" class="uk-input")
+                                div(class="uk-margin")
+                                    label(class="uk-form-label") Confirm New PIN
+                                    input(type="password" name="confirm_pin" id="confirm_pin" class="uk-input")
+                                div(class="uk-margin")
+                                    div(class="uk-button-group")
+                                        button(type="submit" class="uk-button submit-button") Change MPIN
+                                        a(href="")
+                                            button(class="uk-button forgot-pin") Forgot MPIN
