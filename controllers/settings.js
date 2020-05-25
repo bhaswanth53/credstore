@@ -35,3 +35,36 @@ exports.changePassword = (req, res) => {
         })
     }
 }
+
+exports.changePin = (req, res) => {
+    if(!req.user) {
+        req.flash("error", "Please login")
+        res.redirect("/login")
+    } else {
+        let old_pin = req.body.old_pin
+        let new_pin = req.body.new_pin
+        let confirm_pin = req.body.confirm_pin
+
+        bcrypt.compare(old_pin, req.user.mpin, (err, isMatch) => {
+            if(isMatch) {
+                let salt = bcrypt.genSaltSync(10)
+                let pinHash = bcrypt.hashSync(new_pin, salt)
+                let updated = {
+                    mpin: pinHash
+                }
+                let query = { _id: req.user._id }
+
+                User.updateOne(query, updated, (err) => {
+                    if(err) throw err
+                    else {
+                        req.flash("success", "MPIN has been changed successfully")
+                        res.redirect("/user/settings")
+                    }
+                })
+            } else {
+                req.flash("error", "Incorrect old pin")
+                res.redirect("/user/settings")
+            }
+        })
+    }
+}
