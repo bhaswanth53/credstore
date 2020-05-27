@@ -1018,3 +1018,71 @@ body {
 }
 
 /* End of settings page */
+
+/* Homepage */
+
+.home-card {
+    min-height: 70vh;
+    width: 70%;
+    -webkit-box-shadow: 1px 2px 15px -4px #000000; 
+    box-shadow: 1px 2px 15px -4px #000000;
+    background-color: rgba(0, 0, 0, 0.6)
+}
+
+.site-body {
+    background-color: none;
+    background-image: url("/images/siteback.jpg");
+    background-repeat: no-repeat;
+    background-position: fixed;
+    background-size: cover;
+}
+
+.site-nav {
+    background-color: transparent !important;
+}
+
+.site-body .site-overlay {
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(10, 25, 47, 0.5);
+}
+
+.site-nav .logo a {
+    font-family: 'Pacifico', cursive;
+    text-transform: none;
+    font-size: 25px;
+    color: #c7ced9;
+}
+
+.site-nav .logo a:hover {
+    color: #c7ced9;
+}
+
+.site-nav .uk-navbar-right li a {
+    color: #c7ced9;
+    font-family: 'Josefin Sans', sans-serif;
+    text-transform: none;
+    font-size: 18px;
+}
+
+.card-content {
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.card-content .site-title {
+    color: #c7ced9;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.card-content .site-text {
+    color: #c7ced9;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 25px;
+}
+
+.card-content .site-image {
+    width: 100px;
+}
+
+/* End of homepage */

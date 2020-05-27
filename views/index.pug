@@ -2,5 +2,26 @@ extends ./layouts/site
 
 block content
 
-    div(class="uk-position-center")
-        img(src="/images/5.png")
+    div(class="")
+        div(class="uk-width-2-3 home-card uk-align-center uk-position-center")
+            nav(class="uk-navbar-container site-nav" uk-navbar)
+                    div(class="uk-navbar-left")
+                        ul(class="uk-navbar-nav")
+                            li(class="logo")
+                                a(href="/") Credstore
+                    div(class="uk-navbar-right")
+                        ul(class="uk-navbar-nav uk-visible@m")
+                            li
+                                a(href="/") Home
+                            if user
+                                li
+                                    a(href="/user/dashboard") Dashboard
+                            else
+                                li
+                                    a(href="/login") Login
+                                li
+                                    a(href="/register") Register
+            div(class="card-content uk-text-center")
+                img(class="site-image uk-visible@m" src="/images/lock.png")
+                h1(class="site-title") Welcome to Credstore...!
+                p(class="site-text") Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin lacinia est, in tempus augue lacinia vitae. Quisque fermentum aliquam sodales.
