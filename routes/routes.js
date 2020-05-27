@@ -31,6 +31,8 @@ router.get("/user/verify-email/:email", AuthController.verifyEmail)
 router.get("/logout", ensureAuth, AuthController.userLogout)
 router.post("/register", AuthValidator.registerValidator, AuthController.registerUser)
 router.post("/login", AuthController.loginUser)
+router.post("/forgot-password", AuthController.forgotPassword)
+router.post("/reset-password", AuthController.resetPassword)
 
 // Category Routes
 router.get("/user/categories", ensureAuth, CategoryController.viewCategories)

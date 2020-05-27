@@ -21,7 +21,9 @@ block content
                 img(src="/images/2.png")
             div(class="uk-padding uk-hidden@m")
                 include ../messages
-                form(class="auth-form small")
+                form(class="auth-form small" method="POST" action="/reset-password")
+                    input(type="hidden" name="hash_id" value=id)
+                    input(type="hidden" name="hash_email" value=hash_email)
                     div(class="uk-margin")
                         div(class="uk-inline")
                             span(class="uk-form-icon" uk-icon="user")
@@ -41,7 +43,9 @@ block content
                         a(href="/register") click here
         div(class="uk-width-1-2@m uk-padding-small uk-visible@m")
             div(class="auth-card uk-inline")
-                form(class="uk-position-center auth-form")
+                form(class="uk-position-center auth-form" method="POST" action="/reset-password")
+                    input(type="hidden" name="hash_id" value=id)
+                    input(type="hidden" name="hash_email" value=hash_email)
                     div(class="uk-margin")
                         div(class="uk-inline")
                             span(class="uk-form-icon" uk-icon="user")

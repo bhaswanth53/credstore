@@ -21,19 +21,19 @@ block content
                 img(src="/images/2.png")
             div(class="uk-padding uk-hidden@m")
                 include ../messages
-                form(class="auth-form small")
+                form(class="auth-form small" method="POST" action="/forgot-password")
                     div(class="uk-margin")
                         div(class="uk-inline")
                             span(class="uk-form-icon" uk-icon="user")
                             input(type="text" class="uk-input" name="email" placeholder="Email Address")
                     div(class="uk-margin")
-                        button(type="submit" class="uk-button auth-submit uk-width-1-1") Login
+                        button(type="submit" class="uk-button auth-submit uk-width-1-1") Verify Email
                 div(class="uk-width-1-1 uk-position-bottom card-footer")
                     p(class="uk-text-center text-white") Don't have an account? 
                         a(href="/register") click here
         div(class="uk-width-1-2@m uk-padding-small uk-visible@m")
             div(class="auth-card uk-inline")
-                form(class="uk-position-center auth-form")
+                form(class="uk-position-center auth-form" method="POST" action="/forgot-password")
                     div(class="uk-margin")
                         div(class="uk-inline")
                             span(class="uk-form-icon" uk-icon="user")

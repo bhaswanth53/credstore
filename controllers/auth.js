@@ -19,7 +19,20 @@ exports.forgot = (req, res) => {
 }
 
 exports.reset = (req, res) => {
-    res.render("auth/reset")
+    User.findById(req.params.id, (err, user) => {
+        if(err) throw err
+        else {
+            if(user) {
+                res.render("auth/reset", {
+                    hash_email: req.params.email,
+                    id: req.params.id
+                })
+            } else {
+                req.flash("error", "User not found")
+                res.redirect("/login")
+            }
+        }
+    })
 }
 
 exports.registerUser = (req, res) => {
@@ -115,4 +128,74 @@ exports.userLogout = (req, res) => {
     req.logout()
     req.flash("success", "You have been logged out")
     res.redirect("/login")
+}
+
+exports.forgotPassword = (req, res) => {
+    User.findOne({ email: req.body.email }, (err, user) => {
+        if(err) {
+            throw err
+        } else {
+            if(user) {
+                let salt = bcrypt.genSaltSync(10)
+                let emailHash = bcrypt.hashSync(req.body.email, salt)
+                let url = process.env.APP_URL + "reset-password/" + user._id + "/" + emailHash
+
+                let mailOptions = {
+                    from: process.env.MAIL_USERNAME,
+                    to: req.body.email,
+                    subject: "Forgor Password - Credstore",
+                    html: `<h1>Forgot Password Request</h1><h2>Dear User, </h2><p>We have received reset password request for your account. Please click the link below to reset your password. <br/>${url}</p><p>Note: If you are not requested, then please ignore this email.</p>`
+                }
+
+                transporter.sendMail(mailOptions, (err, info) => {
+                    if(err) throw err
+                    else {
+                        req.flash("success", "Reset link has been sent to your email address")
+                        res.redirect("/forgot-password")
+                    }
+                })
+            } else {
+                req.flash("error", "User not found with this email address")
+                res.redirect("/forgot-password")
+            }
+        }
+    })
+}
+
+exports.resetPassword = (req, res) => {
+    bcrypt.compare(req.body.email, req.body.hash_email, (err, isMatch) => {
+        if(err) throw err
+        else {
+            if(isMatch) {
+                User.findById(req.body.hash_id, (err, user) => {
+                    if(err) throw err
+                    else {
+                        if(user) {
+                            let salt = bcrypt.genSaltSync(10)
+                            let passwordHash = bcrypt.hashSync(req.body.password, salt)
+
+                            let updated = {
+                                password: passwordHash
+                            }
+
+                            User.updateOne({ _id: user._id }, updated, (err) => {
+                                if(err) throw err
+                                else {
+                                    req.flash("success", "Your password has been reset. Please login to continue")
+                                    res.redirect("/login")
+                                }
+                            })
+                        } else {
+                            req.flash("error", "User not found")
+                            res.redirect("/login")
+                        }
+                    }
+                })
+            } else {
+                let url = "/reset-password/" + res.body.hash_id + "/" + req.body.email
+                req.flash("error", "Invalid email")
+                res.redirect(url)
+            }
+        }
+    })
 }
