@@ -15,7 +15,7 @@ block content
                         li
                             a(href="/login") Login
                         li
-                            a(href="/register") 
+                            a(href="/register") Register
             div(class="uk-padding uk-visible@m")
                 include ../messages
                 img(src="/images/2.png")
@@ -27,7 +27,15 @@ block content
                             span(class="uk-form-icon" uk-icon="user")
                             input(type="text" class="uk-input" name="email" placeholder="Email Address")
                     div(class="uk-margin")
-                        button(type="submit" class="uk-button auth-submit uk-width-1-1") Login
+                        div(class="uk-inline")
+                            span(class="uk-form-icon" uk-icon="lock")
+                            input(type="password" class="uk-input" name="password" placeholder="New Password")
+                    div(class="uk-margin")
+                        div(class="uk-inline")
+                            span(class="uk-form-icon" uk-icon="lock")
+                            input(type="password" class="uk-input" name="confirm_password" placeholder="Confirm Password")
+                    div(class="uk-margin")
+                        button(type="submit" class="uk-button auth-submit uk-width-1-1") Reset Password
                 div(class="uk-width-1-1 uk-position-bottom card-footer")
                     p(class="uk-text-center text-white") Don't have an account? 
                         a(href="/register") click here
@@ -38,8 +46,16 @@ block content
                         div(class="uk-inline")
                             span(class="uk-form-icon" uk-icon="user")
                             input(type="text" class="uk-input" name="email" placeholder="Email Address")
+                        div(class="uk-margin")
+                            div(class="uk-inline")
+                                span(class="uk-form-icon" uk-icon="lock")
+                                input(type="password" class="uk-input" name="password" placeholder="New Password")
+                        div(class="uk-margin")
+                            div(class="uk-inline")
+                                span(class="uk-form-icon" uk-icon="lock")
+                                input(type="password" class="uk-input" name="confirm_password" placeholder="Confirm Password")
                     div(class="uk-margin")
-                        button(type="submit" class="uk-button auth-submit uk-width-1-1") Verify Email
+                        button(type="submit" class="uk-button auth-submit uk-width-1-1") Reset Password
                 div(class="uk-width-1-1 uk-position-bottom card-footer")
                     p(class="uk-text-center text-white") Don't have an account? 
                         a(href="/register") click here

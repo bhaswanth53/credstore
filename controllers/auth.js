@@ -18,6 +18,10 @@ exports.forgot = (req, res) => {
     res.render("auth/forgot")
 }
 
+exports.reset = (req, res) => {
+    res.render("auth/reset")
+}
+
 exports.registerUser = (req, res) => {
     // User registration Algorithm
     // Store received form data
