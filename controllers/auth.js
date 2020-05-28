@@ -36,57 +36,85 @@ exports.reset = (req, res) => {
 }
 
 exports.registerUser = (req, res) => {
-    // User registration Algorithm
-    // Store received form data
-    let name = req.body.name
-    let email = req.body.email
-    let password = req.body.password
-    let cpassword = req.body.password
-
-    let newUser = new User({
-        name: name,
-        email: email,
-        password: password,
-        mpin: ""
+    // Validate the form data
+    req.checkBody("name", "Name is required").notEmpty()
+    req.checkBody("name", "Name must be shorter than 191 characters").isLength({
+        max: 191
     })
+    req.checkBody("email", "Email is required").notEmpty()
+    req.checkBody("email", "Email is invalid").isEmail()
+    req.checkBody("email", "Email must be less than 255 characters").isLength({
+        max: 255
+    })
+    req.checkBody("password", "Password is required").notEmpty()
+    req.checkBody("password", "Password must be between 8 to 32 characters").isLength({
+        min: 8,
+        max: 32
+    })
+    req.checkBody("cpassword", "Passwords are not matching").equals(req.body.password)
 
-    // Generate Salt
-    let salt = bcrypt.genSaltSync(10)
-    // Hash the password
-    let passwordHash = bcrypt.hashSync(newUser.password, salt)
-    // Generate PIN
-    let pin = securepin.generatePinSync(4)
-    // Hash the PIN
-    let pinHash = bcrypt.hashSync(pin, salt)
+    let errors = req.validationErrors()
 
-    // Assign hashed values to newUser
-    newUser.password = passwordHash
-    newUser.mpin = pinHash
+    if(errors) {
+        /* const firstError = errors.map((error) => error.msg)[0]
+        return res.status(400).json({error: firstError}) */
+        res.render("auth/register", {
+            errors
+        })
+    }
+    else {
+        // User registration Algorithm
+        // Store received form data
+        let name = req.body.name
+        let email = req.body.email
+        let password = req.body.password
+        let cpassword = req.body.password
 
-    newUser.save((err) => {
-        if(err) {
-            console.log(err)
-        }
-        else {
-            // Send mail to user
-            let mailOptions = {
-                from: process.env.MAIL_USERNAME,
-                to: email,
-                subject: "Verify Your Email - Credstore",
-                html: `<p>Verify your email by clicking <a href="http://localhost:3000/user/verify-email/${email}">here</a>.</p><h3>Please note your pin: <span style="color: green">${pin}</span></h3><p>Note: Please do not share your pin to anyone</p>`
+        let newUser = new User({
+            name: name,
+            email: email,
+            password: password,
+            mpin: ""
+        })
+
+        // Generate Salt
+        let salt = bcrypt.genSaltSync(10)
+        // Hash the password
+        let passwordHash = bcrypt.hashSync(newUser.password, salt)
+        // Generate PIN
+        let pin = securepin.generatePinSync(4)
+        // Hash the PIN
+        let pinHash = bcrypt.hashSync(pin, salt)
+
+        // Assign hashed values to newUser
+        newUser.password = passwordHash
+        newUser.mpin = pinHash
+
+        newUser.save((err) => {
+            if(err) {
+                console.log(err)
             }
-
-            transporter.sendMail(mailOptions, (err, info) => {
-                if(err) {
-                    console.log(err)
-                } else {
-                    console.log("Email sent " + info.response)
+            else {
+                // Send mail to user
+                let mailOptions = {
+                    from: process.env.MAIL_USERNAME,
+                    to: email,
+                    subject: "Verify Your Email - Credstore",
+                    html: `<p>Verify your email by clicking <a href="http://localhost:3000/user/verify-email/${email}">here</a>.</p><h3>Please note your pin: <span style="color: green">${pin}</span></h3><p>Note: Please do not share your pin to anyone</p>`
                 }
-            })
-            // Display registered page
-            res.render("auth/registered")
-        }
-    })
+
+                transporter.sendMail(mailOptions, (err, info) => {
+                    if(err) {
+                        console.log(err)
+                    } else {
+                        console.log("Email sent " + info.response)
+                    }
+                })
+                // Display registered page
+                res.render("auth/registered")
+            }
+        })
+    }
 }
 
 exports.verifyEmail = (req, res) => {
@@ -117,11 +145,22 @@ exports.verifyEmail = (req, res) => {
 }
 
 exports.loginUser = (req, res, next) => {
-    passport.authenticate("local", {
-        successRedirect: "/user/dashboard",
-        failureRedirect: "/login",
-        failureFlash: true
-    })(req, res, next)
+    // Validate the inputs
+    req.checkBody("email", "Email is required").notEmpty()
+    req.checkBody("password", "Password is required").notEmpty()
+
+    let errors = req.validationErrors()
+    if(errors) {
+        res.render("auth/login", {
+            errors
+        })
+    } else {
+        passport.authenticate("local", {
+            successRedirect: "/user/dashboard",
+            failureRedirect: "/login",
+            failureFlash: true
+        })(req, res, next)
+    }
 }
 
 exports.userLogout = (req, res) => {
@@ -131,71 +170,102 @@ exports.userLogout = (req, res) => {
 }
 
 exports.forgotPassword = (req, res) => {
-    User.findOne({ email: req.body.email }, (err, user) => {
-        if(err) {
-            throw err
-        } else {
-            if(user) {
-                let salt = bcrypt.genSaltSync(10)
-                let emailHash = bcrypt.hashSync(req.body.email, salt)
-                let url = process.env.APP_URL + "reset-password/" + user._id + "/" + emailHash
+    // Validation Begins
+    req.checkBody("email", "Email is required").notEmpty()
 
-                let mailOptions = {
-                    from: process.env.MAIL_USERNAME,
-                    to: req.body.email,
-                    subject: "Forgor Password - Credstore",
-                    html: `<h1>Forgot Password Request</h1><h2>Dear User, </h2><p>We have received reset password request for your account. Please click the link below to reset your password. <br/>${url}</p><p>Note: If you are not requested, then please ignore this email.</p>`
-                }
+    let errors = req.validationErrors()
 
-                transporter.sendMail(mailOptions, (err, info) => {
-                    if(err) throw err
-                    else {
-                        req.flash("success", "Reset link has been sent to your email address")
-                        res.redirect("/forgot-password")
-                    }
-                })
+    if(errors) {
+        res.render("auth/forgot", {
+            errors
+        })
+    } else {
+        User.findOne({ email: req.body.email }, (err, user) => {
+            if(err) {
+                throw err
             } else {
-                req.flash("error", "User not found with this email address")
-                res.redirect("/forgot-password")
+                if(user) {
+                    let salt = bcrypt.genSaltSync(10)
+                    let emailHash = bcrypt.hashSync(req.body.email, salt)
+                    let url = process.env.APP_URL + "reset-password/" + user._id + "/" + emailHash
+    
+                    let mailOptions = {
+                        from: process.env.MAIL_USERNAME,
+                        to: req.body.email,
+                        subject: "Forgor Password - Credstore",
+                        html: `<h1>Forgot Password Request</h1><h2>Dear User, </h2><p>We have received reset password request for your account. Please click the link below to reset your password. <br/>${url}</p><p>Note: If you are not requested, then please ignore this email.</p>`
+                    }
+    
+                    transporter.sendMail(mailOptions, (err, info) => {
+                        if(err) throw err
+                        else {
+                            req.flash("success", "Reset link has been sent to your email address")
+                            res.redirect("/forgot-password")
+                        }
+                    })
+                } else {
+                    req.flash("error", "User not found with this email address")
+                    res.redirect("/forgot-password")
+                }
             }
-        }
-    })
+        })
+    }
 }
 
 exports.resetPassword = (req, res) => {
-    bcrypt.compare(req.body.email, req.body.hash_email, (err, isMatch) => {
-        if(err) throw err
-        else {
-            if(isMatch) {
-                User.findById(req.body.hash_id, (err, user) => {
-                    if(err) throw err
-                    else {
-                        if(user) {
-                            let salt = bcrypt.genSaltSync(10)
-                            let passwordHash = bcrypt.hashSync(req.body.password, salt)
-
-                            let updated = {
-                                password: passwordHash
-                            }
-
-                            User.updateOne({ _id: user._id }, updated, (err) => {
-                                if(err) throw err
-                                else {
-                                    req.flash("success", "Your password has been reset. Please login to continue")
-                                    res.redirect("/login")
-                                }
-                            })
-                        } else {
-                            req.flash("error", "User not found")
-                            res.redirect("/login")
-                        }
-                    }
-                })
-            } else {
-                let url = "/reset-password/" + res.body.hash_id + "/" + req.body.email
-                req.flash("error", "Invalid email")
-                res.redirect(url)
-            }
-        }
+    req.checkBody("hash_email", "Email token is missing").notEmpty()
+    req.checkBody("hash_id", "Session token is missing").notEmpty()
+    req.checkBody("email", "Email is required").notEmpty()
+    req.checkBody("password", "Password is required").notEmpty()
+    req.checkBody("password", "Password should between 8 to 32 characters").isLength({
+        min: 8,
+        max: 32
     })
+    req.checkBody("confirm_password", "Passwords are not matching").equals(req.body.password)
+
+    let errors = req.validationErrors()
+
+    if(errors) {
+        let url = req.header("Referer") || "/login"
+        for(var i = 0; i<errors.length; i++) {
+            req.flash("error", errors[i].msg)
+        }
+        res.redirect(url)
+    } else {
+        bcrypt.compare(req.body.email, req.body.hash_email, (err, isMatch) => {
+            if(err) throw err
+            else {
+                if(isMatch) {
+                    User.findById(req.body.hash_id, (err, user) => {
+                        if(err) throw err
+                        else {
+                            if(user) {
+                                let salt = bcrypt.genSaltSync(10)
+                                let passwordHash = bcrypt.hashSync(req.body.password, salt)
+    
+                                let updated = {
+                                    password: passwordHash
+                                }
+    
+                                User.updateOne({ _id: user._id }, updated, (err) => {
+                                    if(err) throw err
+                                    else {
+                                        req.flash("success", "Your password has been reset. Please login to continue")
+                                        res.redirect("/login")
+                                    }
+                                })
+                            } else {
+                                req.flash("error", "User not found")
+                                res.redirect("/login")
+                            }
+                        }
+                    })
+                } else {
+                    let url = "/reset-password/" + res.body.hash_id + "/" + req.body.email
+                    req.flash("error", "Invalid email")
+                    res.redirect(url)
+                }
+            }
+        })
+    }
 }

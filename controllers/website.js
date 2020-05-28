@@ -3,7 +3,7 @@ const Category = require("../models/categories")
 const Website = require("../models/websites")
 
 exports.listWebsites = (req, res) => {
-    Category.find({}, (err, categories) => {
+    Category.find({ user: req.user._id }, (err, categories) => {
         if(err) throw err
         else {
             Website.find({ user: req.user._id }, (err, websites) => {
@@ -53,7 +53,7 @@ exports.editWebsite = (req, res) => {
     Website.findById(req.params.id, (err, website) => {
         if(err) throw err
         else {
-            Category.find({}, (err, categories) => {
+            Category.find({ user: req.user._id }, (err, categories) => {
                 if(err) throw err
                 else {
                     res.render("user/editwebsite", {

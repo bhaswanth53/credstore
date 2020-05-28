@@ -29,14 +29,14 @@ router.get("/forgot-password", ensureGuest, AuthController.forgot)
 router.get("/reset-password/:id/:email", AuthController.reset)
 router.get("/user/verify-email/:email", AuthController.verifyEmail)
 router.get("/logout", ensureAuth, AuthController.userLogout)
-router.post("/register", AuthValidator.registerValidator, AuthController.registerUser)
+router.post("/register", AuthController.registerUser)
 router.post("/login", AuthController.loginUser)
 router.post("/forgot-password", AuthController.forgotPassword)
 router.post("/reset-password", AuthController.resetPassword)
 
 // Category Routes
 router.get("/user/categories", ensureAuth, CategoryController.viewCategories)
-router.post("/user/categories/add", [ensureAuth, CategoryValidator.addCategory], CategoryController.addCategory)
+router.post("/user/categories/add", CategoryController.addCategory)
 router.delete("/user/categories/:id", CategoryController.deleteCategory)
 
 // Credential Routes

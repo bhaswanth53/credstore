@@ -9,6 +9,7 @@ block content
                 div(class="uk-margin")
                     label(class="uk-form-label" for="category") Category
                     select(class="uk-select" name="category" id="category")
+                        option(value="Uncategorized") Uncategorized
                         each category, i in categories
                             if website.category == category._id
                                 option(value=category._id selected) #{category.name}

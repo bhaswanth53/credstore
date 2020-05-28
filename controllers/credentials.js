@@ -8,7 +8,7 @@ const Credential = require("../models/credentials")
 const User = require("../models/users")
 
 exports.listSites = (req, res) => {
-    Category.find({}, (err, categories) => {
+    Category.find({ user: req.user._id }, (err, categories) => {
         if(err) throw err
         else {
             Site.find({ user: req.user._id }, (err, sites) => {
@@ -51,19 +51,27 @@ exports.listCredentials = (req, res) => {
 }
 
 exports.addSite = (req, res) => {
-    let site = new Site()
-    site.user = req.user._id
-    site.category = req.body.category
-    site.name = req.body.name
-    site.url = req.body.url
-    site.description = req.body.description
-    site.save((err) => {
-        if(err) throw err
-        else {
-            req.flash("success", "Site has been added successfully")
-            res.redirect("/user/credentials")
-        }
-    })
+    req.checkBody("name", "Site name is required").notEmpty()
+    req.checkBody("url", "Site URL is required").notEmpty()
+
+    let errors = req.validationErrors()
+    if(errors) {
+        //
+    } else {
+        let site = new Site()
+        site.user = req.user._id
+        site.category = req.body.category
+        site.name = req.body.name
+        site.url = req.body.url
+        site.description = req.body.description
+        site.save((err) => {
+            if(err) throw err
+            else {
+                req.flash("success", "Site has been added successfully")
+                res.redirect("/user/credentials")
+            }
+        })
+    }
 }
 
 exports.addCredential = (req, res) => {

@@ -17,17 +17,31 @@ exports.viewCategories = (req, res) => {
 }
 
 exports.addCategory = (req, res) => {
-    let category = new Category()
-    category.user = req.user._id
-    category.name = req.body.name
-    category.icon = req.body.caticon
-    category.save((err) => {
-        if(err) throw err
-        else {
-            req.flash("success", "Category has been added successfully")
-            res.redirect("/user/categories")
+    req.checkBody("name", "Category name is required").notEmpty()
+
+    let errors = req.validationErrors()
+
+    if(errors) {
+        let url = req.header("Referer") || "/user/categories"
+
+        for(var i=0; i<errors.length; i++) {
+            req.flash("error", errors[i].msg)
         }
-    })
+
+        res.redirect(url)
+    } else {
+        let category = new Category()
+        category.user = req.user._id
+        category.name = req.body.name
+        category.icon = req.body.caticon
+        category.save((err) => {
+            if(err) throw err
+            else {
+                req.flash("success", "Category has been added successfully")
+                res.redirect("/user/categories")
+            }
+        })
+    }
 }
 
 exports.deleteCategory = (req, res) => {
